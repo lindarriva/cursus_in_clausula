@@ -1,0 +1,64 @@
+body {background-color:#ffffff; font-family:verdana; margin:0;}
+
+div.presentazione{
+font-family:georgia, "times new roman";
+margin-left:70px;
+margin-right:70px;
+margin-top:40px;
+margin-bottom: 50px
+
+}
+p.testo{
+font-family:georgia, "times new roman";
+font-size:14.5px;
+font-style: italic;
+text-align:justify;
+text-indent:0px;
+line-height:21px;
+color:#444444;
+padding: 0;
+margin:0;
+font-weight: normal;
+}
+p.titolo{color: #911931;font-family:verdana;font-size:85%;font-weight:bold;text-align:justify;}
+
+p.normal{
+font-weight: normal;
+}
+.ultAgg{
+font-family:verdana;
+font-size:70%;
+color: #000000;
+}
+.enti {font-family:verdana;
+font-size: 75%;
+color: #911931;
+}
+.m {font-variant:small-caps;font-weight:bold}
+
+a.copyright:link, a.copyright:visited {color:#0000aa;text-decoration:underline;font-family:arial;font-size:13px;font-style: normal}
+
+.pedecerto{
+    color:#cc0000;
+    font-variant: small-caps;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal
+}    
+ul.home {
+    margin:0;
+    padding: 0;
+    padding-left: 13px;
+    font-family: inherit;
+    font-style: italic;
+    
+}
+ul.home li{
+    padding-bottom: 7px;
+    font-family: inherit;
+    text-align: justify;
+    font-size:14.5px;
+    color:#444444;
+    line-height:21px;
+    
+}

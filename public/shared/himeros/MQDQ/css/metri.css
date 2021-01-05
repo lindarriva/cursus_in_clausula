@@ -1,0 +1,50 @@
+p.metroopera {
+    margin-right:10px;
+    font-family:verdana,arial;
+    margin:0;
+    margin-top:10px;
+    margin-left:10px;
+    font-size:12.5px;
+    font-style:italic;
+    font-weight:bold
+}
+p.metrosezione {
+    text-indent:-10px;
+    margin-right:10px;
+    font-family:verdana,arial;
+    margin-top:0px;
+    margin-bottom:2px;
+    margin-left:40px;
+    font-size:12px
+}
+p.metrounita {
+    margin-right:10px;
+    font-family:verdana,arial;
+    margin-top:0px;
+    margin-bottom:2px;
+    margin-left:45px;
+    font-size:12px
+}
+p.metroversi {
+    margin-right:10px;
+    font-family:verdana,arial;
+    margin-top:0px;
+    margin-bottom:2px;
+    margin-left:60px;
+    font-size:12px
+}
+.metropseudo {
+    color:#bbbbbb;
+    font-weight:bold
+}
+.metrometro {
+    font-style:normal;
+    font-weight:normal
+}
+a:link.metroapri, a:visited.metroapri {
+    color:#0000ff;
+    text-decoration:underline;
+}
+a:hover.metroapri {
+    color:#cc0000
+}

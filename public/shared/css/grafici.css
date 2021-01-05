@@ -1,0 +1,74 @@
+table {border-collapse:collapse;}
+table.head {line-height:1.2em;background-color:#fff}
+td.title {font-weight:bold;color:#990000;font-size:13px;border:0;line-height:20px}
+td.line {border:1px solid #cccccc;border-left:none}
+td.chart {font-size:10.5px}
+p.chart {margin:0;padding:2px;font-family:arial;color:#ffffff;font-size:10.5px}
+p.largo {padding:5px}
+.white {background-color:#ffffff;padding-left: 3px;padding-right: 3px;font-family:arial;font-size:10.5px;color:#000000}
+.barraCentro {background-color:#d5d5d5}
+.barraA {background-color:#c2dbff}
+.barraB {background-color:#c2dbdd}
+.barraC {background-color:#c2dbbb}
+.barraD {background-color:#c2db99}
+.barraE {background-color:#c2db77}
+.barraF {background-color:#c2db55}
+.barraG {background-color:#c2db33}
+.barraH {background-color:#c2db11}
+.barraI {background-color:#88dbff}
+.barraJ {background-color:#88dbdd}
+.barraK {background-color:#88dbbb}
+.barraL {background-color:#88db99}
+.barraM {background-color:#88db77}
+.barraN {background-color:#88db55}
+.barraO {background-color:#88db33}
+.barraP {background-color:#88db11}
+.barraQ {background-color:#c2aaff}
+.barraR {background-color:#c2aadd}
+.barraS {background-color:#c2aabb}
+.barraT {background-color:#c2aa99}
+.barraU {background-color:#c2aa77}
+.barraV {background-color:#c2aa55}
+.barraW {background-color:#c2aa33}
+.barraX {background-color:#c2aa11}
+.barraY {background-color:#c288ff}
+.barraZ {background-color:#c288dd}
+.legenda {font-family:verdana;font-size:12px;padding-left:25px;border:1px solid #cccccc}
+.label {font-size:11px;}
+.chart {font-size:12px;text-align:center;padding-top:2px;padding-bottom:2px}
+a.tooltip {color:#fd7116;text-decoration: none;font-weight: bold;cursor: default}
+td.testes {line-height:12px;background-color:#ffffff;color:#0000a0;font-family:Verdana;font-size:12px;padding-left:3px;
+        border-right:1px solid #ccc;border-left:1px solid #ccc;border-bottom:1px solid #cccccc;border-top:1px solid #ccc;
+        padding-right:2px;padding-top:4px;padding-bottom:4px;white-space: normal;}
+/*
+.barraA {background-color:#c2dbff}
+.barraB {background-color:#88dbff}
+.barraC {background-color:#c2aaff}
+.barraD {background-color:#c288ff}
+.barraE {background-color:#c2dbdd}
+.barraF {background-color:#88dbdd}
+.barraG {background-color:#c2aadd}
+.barraH {background-color:#c288dd}
+.barraI {background-color:#c2dbbb}
+.barraJ {background-color:#88db99}
+.barraK {background-color:#c2aabb}
+.barraL {background-color:#c2db99}
+.barraM {background-color:#88db77}
+.barraN {background-color:#c2aa99}
+.barraO {background-color:#c2db77}
+.barraP {background-color:#88db55}
+.barraQ {background-color:#c2aa77}
+.barraR {background-color:#c2db55}
+.barraS {background-color:#88db33}
+.barraT {background-color:#c2aa55}
+.barraU {background-color:#c2db33}
+.barraV {background-color:#88db11}
+.barraW {background-color:#c2aa33}
+.barraY {background-color:#c2db11}
+.barraX {background-color:#c2aa11}
+.barraZ {background-color:#c288dd}
+
+
+
+*/
+

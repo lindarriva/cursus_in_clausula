@@ -1,0 +1,19 @@
+    .logoMQDQ_1{
+        font-family: "Open sans";
+        /*color:#000;*/
+        color:#828282;
+        font-size:35px;
+        font-weight: 400;
+    }
+    .logoMQDQ_2{
+        font-family: "Open sans";
+        color:#b00008;
+        /*color:#726bff;*/
+        font-size:35px;
+        font-weight: 400;
+    }
+@media screen and (max-width: 759px) {
+    .logoMQDQ_1, .logoMQDQ_2 {
+        font-size: 30px;
+    }
+}

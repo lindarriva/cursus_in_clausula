@@ -1,0 +1,47 @@
+
+
+<script type="text/javascript">
+
+    require(["dojo/parser","dijit/Dialog"
+    ]);
+
+
+</script>
+
+<style>
+     #nome-label, #cognome-label, #username-label, #password-label, #password1-label, #istituzione-label {
+        margin-bottom: 5px
+    }
+    
+</style>
+
+    <div class="mainDiv" align="left" style="padding-bottom:20px;min-height: 700px">
+        <?php
+        require "Menu.php";
+        $menu = new Menu("home", $this->baseUrl());
+        ?>
+        <div style="padding:5px;">
+
+
+            
+
+                <div class="panel"
+                    
+                    style=" background-color: #dfe6ea;  margin:5px;padding:10px;padding-top:5px; display: <?php echo $this->display ?>">
+                    
+                        <?php echo $this->form->render() ?>
+                     <p class="messaggio"><?php echo $this->messaggio?></p>
+                    
+
+               
+            </div>
+        </div>
+       
+    
+ 
+
+
+            </div>
+<script type="text/javascript">
+    document.getElementById("nome").focus();
+</script>

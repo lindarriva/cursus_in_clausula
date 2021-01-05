@@ -1,0 +1,14 @@
+td.autore {font-family:verdana,arial;font-size:12px}
+td.scuro {background-color:#efdda8}
+td.chiaro {background-color:#fff6de}
+td.periodo {background-color:#8f382f;color:#ffffff;font-weight:bold;font-family:verdana;font-size:12px%;
+padding:5px}
+a:link.autore, a:visited.autore {color: #0000a0; font-family:verdana,arial;text-decoration:none;font-weight:bold}
+a:hover.autore {color:#cc0000; text-decoration:underline}
+a:link.opera, a:visited.opera {color: #0000a0; font-family:verdana,arial;text-decoration:none;font-style:italic}
+a:hover.opera {color:#cc0000; text-decoration:underline}
+.data {font-family:verdana,arial;font-size:85%;color:black}
+a:link.lettera, a:visited.lettera {color:#0000bb;font-family:serif;font-size:15px}    
+a:hover.lettera {color:#cc0000;text-decoration:underline}    
+a:link.tutti,a:visited.tutti {color:#cc0000;font-family:serif;font-size:15px;font-weight:bold}   
+

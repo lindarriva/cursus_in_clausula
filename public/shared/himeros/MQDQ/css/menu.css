@@ -1,0 +1,46 @@
+td.pseudolink {
+    color:#000000;
+    font-family:arial;
+    font-weight:bold;
+    font-size:15px;
+    padding-left:20px;
+    line-height:1.8em
+}
+
+td.menu {
+    font-size:13px;
+    font-family:arial;
+    font-weight:bold;
+    line-height:1.8em;
+    padding-left:20px
+}
+A:link.menu, A:visited.menu {
+    color:#000000; 
+    text-decoration: none
+}
+A:hover.menu, A:link.menuSelected,A:visited.menuSelected {
+    color:#FAFAE4
+}
+
+td.submenu {
+    font-size:13px;
+    font-family:arial;
+    font-weight:bold;
+    line-height:1.2em;
+    padding-left:50px;
+}
+
+td.poeti {
+    font-size:12px;
+    font-family:arial;
+    font-weight:bold;
+    color:#FAFAE4; 
+    line-height:1.0em;
+    padding-left:5px
+}
+
+
+td.spazio {
+    line-height:0.5em
+}
+

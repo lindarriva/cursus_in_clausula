@@ -1,0 +1,67 @@
+
+.titoloInfo,.alt,.data,td.opera,.edizione,a.opera,td.nota,td.notaApparato {
+    font-family:'Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif';
+}
+
+.titoloInfo {
+    color:#cc0000;
+    font-size:15px;
+    font-weight:bold
+}
+.alt {
+    color:black;
+    font-size:12px
+}
+.data {
+    font-size:10.5px;
+    color:black
+}
+td.img {
+    padding-left:3px;
+    padding-right:8px;
+    padding-top:4px
+}
+td.opera {
+    font-size:13px;
+    padding-top:2px;
+    padding-bottom:2px;
+    font-style:italic;
+    text-align:left
+}
+.disabilitato {
+    color:#999999
+}
+.edizione {
+    font-size:12px;
+    font-style:normal;
+    color:black
+}
+a:link.opera, a:visited.opera {
+    color: #0000a0; 
+    text-decoration:none;
+    font-style:italic;
+    font-weight:normal
+}
+a:link.sezione,a:visited.sezione {
+    text-decoration:none;
+    color: #0000a0
+}
+a:hover.opera,a:hover.sezione {
+    color:#cc0000;
+    text-decoration:underline
+}
+td.nota {
+    font-size:65%;
+    padding-top:2px;
+    padding-bottom:2px;
+    text-align:justify
+}
+td.notaApparato {
+    font-size:11px;padding-top:0;
+    padding-bottom:0;
+}
+table.main {
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:0px
+}

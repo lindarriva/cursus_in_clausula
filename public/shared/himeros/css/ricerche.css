@@ -1,0 +1,114 @@
+/* poiché in IExplorer 6 non si eredita nulla, definiamo il formato carattere per tutto */
+label,td.destra,td.sinistra,td.campi{
+    font-family:'Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif';
+    font-size:12px;    
+}
+
+
+table.griglia {
+    margin-top:15px;
+    width:700px;
+    
+}
+table.area {
+    border-radius:5px 5px 5px 5px;
+    -khtml-border-radius:5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;        
+    -moz-border-radius: 5px 5px 5px 5px;
+    box-shadow:0 0 10px -1px #999; 
+    -webkit-box-shadow:0 0 10px -1px #999; 
+    -moz-box-shadow: 0 0 10px -1px #999; 
+    width: 100%;
+    margin-top:15px;
+}
+p.riquadro {
+    width:420px;
+}
+
+p.testo {
+    line-height:17px;
+    font-size:11.5px;
+    padding:20px;
+    color:#000;
+    text-align:justify
+}
+a:link.ricerca, a:visited.ricerca {
+    color: #0000a0; 
+}
+a:hover.ricerca {
+    color:#cc0000;  
+} 
+td.campi {
+    padding-left:3px; 
+    padding-bottom:2px;
+}
+.campiform0 {
+    width:450px; 
+    font-size: 14px;
+}
+.campoform1 {
+    width:260px;
+    font-size: 13px;
+}
+.campoform2 {
+    width:120px;
+    font-size: 13px;
+}
+select.griglia {
+}
+input.check {
+    
+} 
+td.sinistra {
+    width: 100px;
+    vertical-align: middle;
+    color:white; 
+    padding-left:5px; 
+    padding-right:5px;
+    text-align:center; 
+    font-weight:bold;
+    border-radius:5px 0 0 5px;
+    -khtml-border-radius:5px 0 0 5;
+    -webkit-border-radius: 5px 0px 0px 5px;         
+    -moz-border-radius: 5px 0px 0px 5px; 
+    background:-webkit-linear-gradient(#ababab,#999);
+    background:-moz-linear-gradient(#ababab,#999);
+    background:-o-linear-gradient(#ababab,#999);
+    background:-ms-linear-gradient(#ababab,#999);
+    background:linear-gradient(#ababab,#999);    
+    background-color:#999; 
+}
+td.destra {
+    text-align:left;
+    vertical-align: middle;
+    padding:8px; 
+    border-radius:0 5px 5px 0;
+    -khtml-border-radius:0 5px 5px 0;
+    -webkit-border-radius:0 5px 5px 0;       
+    -moz-border-radius:0 5px 5px 0;
+    background:-webkit-linear-gradient(#fefefe,#ededed);
+    background:-moz-linear-gradient(#fefefe,#ededed);
+    background:-o-linear-gradient(#fefefe,#ededed);
+    background:-ms-linear-gradient(#fefefe,#ededed);
+    background:linear-gradient(#fefefe,#ededed);    
+    background-color:#ededed; 
+    
+}
+.rosso {
+    color:red; 
+    font-weight:bold
+}
+option.bianco {
+    background:#ffffff
+}
+option.grigio {
+    background:#edf3fe
+}
+#piu3 {
+	display:none;
+}
+#input2_1,#input2_2,#input3_1,#input3_2,#label2,#label3,#logop_2,#logop_3,#posv2,#posv3 {
+    visibility:hidden;    
+}
+
+

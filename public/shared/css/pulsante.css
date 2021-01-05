@@ -1,0 +1,157 @@
+/*
+classi identiche a quelle omonime di default.css; si usa quando non è opportuno linkare il precedente (p.e. in MQDQ) 
+*/
+input.pulsante,button.pulsante,.pulsante {
+    font-size: 11.5px;
+    font-weight: bold;
+    font-family: arial;
+    letter-spacing: .5px;    
+    border-radius:4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3.5px;
+    padding-bottom: 6px;
+    vertical-align: middle;
+    -khtml-border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    cursor:pointer;
+    color:#444;
+    height:27px;
+    text-shadow: 1px 1px 1px white;
+    box-shadow:0px 0px 7px #b6d0e0;
+    -moz-box-shadow: 0px 0px 7px #b6d0e0;
+    -webkit-box-shadow:0px 0px 7px #b6d0e0;    
+}
+
+input.grande, button.grande {
+    letter-spacing:1px;
+    height:33px;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    vertical-align: middle;
+}
+input.piccolo, button.piccolo {
+    height:23px;
+    padding-top:2px;
+    padding-bottom:3px;
+}
+input.help {
+    border-radius:13px;
+    -khtml-border-radius:13px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;   
+    height:25px;    
+    padding-top:0;
+    padding-bottom:0;
+    padding-left:7px;
+    padding-right:7px;
+}
+.pulsante img {
+	vertical-align:-4px
+}
+
+
+input:disabled.pulsante, button:disabled.pulsante, input:disabled:hover.pulsante,button:disabled:hover.pulsante {
+    border: 1px solid #bababa;
+    color:#9b9b9b;
+
+    background: #efefef; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VmZWZlZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjYWNhY2EiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #efefef 0%, #cacaca 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efefef), color-stop(100%,#cacaca)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #efefef 0%,#cacaca 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#cacaca',GradientType=0 ); /* IE6-8 */
+    
+    text-shadow: 1px 1px 1px white;
+    box-shadow:0px 0px 7px #c6c6c6;
+    -moz-box-shadow: 0px 0px 7px #c6c6c6;
+    -webkit-box-shadow:0px 0px 7px #c6c6c6;   
+    cursor: default;
+}  
+
+/* per ottenere un'immagine disattivata nei pulsanti <button> si crea una <div class="img_button">
+   a cui si aggiunge lo stile dell'immagine
+*/
+.img_button {
+    display: inline;
+    padding-left:15px;
+    background-repeat: no-repeat;
+}
+.img_cancella {
+    background-image: url(img/cancella.png);
+}
+.img_cancella_i {
+    background-image: url(img/cancella_i.png);
+}
+
+.img_modifica {
+    background-image: url(img/modifica.png);
+}
+.img_modifica_i {
+    background-image: url(img/modifica_i.png);
+}
+.img_alto {
+    background-image: url(img/alto.gif);
+}
+.img_alto_i {
+    background-image: url(img/alto_i.gif);
+}
+.img_basso {
+    background-image: url(img/basso.gif);
+}
+.img_basso_i {
+    background-image: url(img/basso_i.gif);
+}
+
+.img_avanti {
+    background-image: url(img/avanti.png);
+}
+.img_avanti_i {
+    background-image: url(img/avanti_i.png);
+}
+.img_indietro {
+    background-image: url(img/indietro.png);
+}
+.img_indietro_i {
+    background-image: url(img/indietro_i.png);
+}
+.img_anteprima {
+    background-image: url(img/anteprima.png);
+}
+.img_anteprima_i {
+    background-image: url(img/anteprima_i.png);
+}
+.img_pdf {
+    background-image: url(img/pdf.png);
+}
+.img_pdf_i {
+    background-image: url(img/pdf_i.png);
+}
+.img_download {
+    background-image: url(img/download.png);
+}
+
+.img_download_i {
+    background-image: url(img/download_i.png);
+}
+.img_ricerca {
+    background-image: url(img/lente.png);
+}
+
+.img_ricerca_i {
+    background-image: url(img/lente_i.png);
+}
+.img_upload {
+    background-image: url(img/upload.png);
+}
+
+
+
+

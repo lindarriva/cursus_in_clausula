@@ -1,0 +1,19 @@
+table.metri{
+    border:solid 1px #999999;
+    border-collapse:collapse;
+    width:100%
+}
+table.metri td{
+    border:solid 1px #999999; 
+    padding-left:7px;
+    padding-right:7px;
+    padding-top:2px;
+    padding-bottom:2px;
+    font-family: "lucida grande","verdana","arial","sans serif";
+    font-size:12px;
+}
+.titolo{
+    font-size:30px;
+}
+
+

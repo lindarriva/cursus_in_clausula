@@ -1,0 +1,20 @@
+.eviRed {
+    /* occorrenza evidenziata */
+    color:#2e25be !important;
+    /*text-decoration: underline;*/
+    font-weight: bold;
+    background-color: #fdf5a6 ;
+    border:1px solid #ffd900;
+    padding: 2px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+/*    box-shadow:0px 0px 5px #999999;
+    -moz-box-shadow: 0px 0px 7px #999999;
+    -webkit-box-shadow:0px 0px 5px #bbbbbb;
+*/    
+    border-radius:4px;
+    -khtml-border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}

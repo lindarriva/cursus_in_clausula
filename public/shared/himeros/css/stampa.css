@@ -1,0 +1,33 @@
+/* pagina di esportazione delle occorrenze */
+
+body {
+    background-color: #fff
+}
+
+
+div.comando{
+    padding:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+
+div.intestazione{
+    padding-top:17px;
+    padding-bottom: 17px;
+    padding-left:15px;
+    font-family: "georgia";
+    font-size: 16px
+}
+div.btn-group, ul.pagination, #divIndexes{
+    display: none;
+}
+div.bianco, div.grigio {
+    /*width: auto;*/
+    width:50%;
+    background-color: #fff;
+}
+div.citazione {
+   line-height: 15px;
+	text-align: left
+}

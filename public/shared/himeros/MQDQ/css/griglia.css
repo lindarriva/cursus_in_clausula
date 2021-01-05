@@ -1,0 +1,10 @@
+
+
+body {background-color:#ffffff; margin:0px;}
+A:link.semplice, A:visited.semplice {color: #0000a0; font-size:12px; font-family:verdana,arial; text-decoration: underline}
+A:hover.semplice { color: #fb7d00; text-decoration: underline}
+.normalblu { color:black; font-size:11px; font-family:verdana,arial}
+td.normal {background-color:#808080;color: white; font-size:12px; font-family:verdana,arial;margin-top:10px;line-height:2.1em}
+.standard { color: #0000a0; font-size:9pt; font-family:verdana, arial}
+input.campo0 {font-family:verdana,arial;font-size:12px;width:210px}
+input.campo1 {font-family:verdana,arial;font-size:12px;width:140px}

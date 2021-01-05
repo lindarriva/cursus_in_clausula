@@ -1,0 +1,73 @@
+    table#pr_scheda {
+        padding-top: 20px;
+        padding-left: 30px;
+        width: 100%;
+        border-collapse: collapse
+    }
+    table#pr_scheda td.label{
+        /*background-color: #eaf3fc;*/
+        /*background-color: #fff7e3;*/
+        background-color: #fade9d;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top:8px;
+        text-align: right;
+        border-top: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+        vertical-align: top
+    }
+    table#pr_scheda td.campo{
+        padding: 8px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-top: 1px solid #ededed;
+        border-bottom: 1px solid #ededed
+    }
+    table#pr_scheda td.sommario {
+        text-align: justify
+    }
+    ul#pr_soggetti, ul#pr_soggettiSecondari, ul#pr_spogli, ul#pr_recensioni {
+        padding: 0;
+        margin:0;
+        padding-left:12px;
+        margin-left: 0
+    }
+    ul#pr_spogli {
+        line-height: 20px;
+    }
+    ul#pr_recensioni li{
+    	 padding-bottom:7px;
+    	 
+    }
+
+    ul#pr_soggettiSecondari li {
+        color:#777777;
+    }
+    p#pr_secondari{
+        font-style: italic;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin:0
+
+    }
+    a:link.scheda,a:link.spogli,a:visited.scheda,a:visited.spogli {
+        color:#0d4d97;  /*0000aa;*/        
+        text-decoration: none;
+        font-weight: normal
+    }
+    a:hover.scheda,a:hover.spogli {
+        color:#0000aa;
+        text-decoration: underline;
+        color:#ff6600;
+    }
+    .evi {
+        background-color: #f9e975;
+        padding-left: 2px;
+        padding-right: 2px
+    }
+    .pslink {
+        color:#0000aa;
+        text-decoration: none;
+        font-weight: bold
+    }

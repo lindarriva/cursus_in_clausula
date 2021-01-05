@@ -1,0 +1,29 @@
+/*scansioni*/
+p.noScansione{
+    margin-left:0 !important;
+    max-width: 400px !important;
+    white-space: normal !important;
+    font-family: 'lucida grande',arial,verdana,"sans serif";
+    font-size:12px;
+}
+
+.scandito {
+    font-family:georgia !important;
+    font-size:13px
+}
+.soluzione {
+    font-size:11px;
+    font-family: 'lucida grande',arial,verdana,"sans serif";
+}
+#headScansione {
+    background-color:#dedede;
+    font-family: 'lucida grande',arial,verdana,"sans serif";
+    font-size: 13px;
+    padding:10px;
+}    
+p.headScansione {
+    margin-left:60px;
+    margin-top:20px;
+    margin-bottom:30px;
+}    
+

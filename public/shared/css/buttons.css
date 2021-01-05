@@ -1,0 +1,238 @@
+.button_ {
+    font-size: 11.5px;
+    font-weight: bold;
+    font-family: arial;
+    letter-spacing: .5px;
+    border-radius:4px;
+    padding-left: 27px;
+    padding-right: 7px;
+    padding-top: 4.5px;
+    padding-bottom: 4px;
+    vertical-align: middle;
+    -khtml-border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    cursor:pointer;
+    color:#444;
+    height:27px;
+    text-shadow: 1px 1px 1px white;
+    box-shadow:0px 0px 7px #b6d0e0;
+    -moz-box-shadow: 0px 0px 7px #b6d0e0;
+    -webkit-box-shadow:0px 0px 7px #b6d0e0;
+    background-color: #fbd97f;
+    border: 1px solid #febc24;
+    background-repeat:no-repeat;
+    background-position:6px 4px;
+    line-height: 10px
+
+}
+input:hover.button_,button:hover.button_, a:hover.button_{
+    background-color: #f3be2a
+}
+
+input:disabled.button_, button:disabled.button_ {
+    border: 1px solid #bababa;
+    color:#9b9b9b;
+    text-shadow: 1px 1px 1px white;
+    box-shadow:0px 0px 7px #c6c6c6;
+    -moz-box-shadow: 0px 0px 7px #c6c6c6;
+    -webkit-box-shadow:0px 0px 7px #c6c6c6;
+    cursor: default;
+    background-color: #dedede
+}
+
+
+.button_big {
+    letter-spacing:1px;
+    height:33px;
+    font-size: 12px;
+    padding-left: 26px;
+    padding-right: 10px;
+    padding-top: 6px;
+    vertical-align: middle;
+    background-position:6px 7px;
+}
+.button_small {
+    height:23px;
+    padding-top:2px;
+    padding-bottom:3px;
+    background-position:6px 2px;
+}
+.button_empty { /* senza label o senza icona */
+    background-position:center center;
+    padding-right: 12px;
+    padding-left: 12px
+}
+
+
+
+.button_new {
+    background-image: url(img/new.png);
+}
+.button_new:disabled {
+    background-image: url(img/new_d.png);
+}
+.button_edit {
+    background-image: url(img/edit.png);
+}
+.button_edit:disabled {
+    background-image: url(img/edit_d.png);
+}
+.button_download {
+    background-image: url(img/download.png);
+}
+.button_download:disabled {
+    background-image: url(img/download_d.png);
+}
+.button_preview {
+    background-image: url(img/preview.png);
+}
+.button_preview:disabled {
+    background-image: url(img/preview_d.png);
+}
+.button_excel {
+    background-image: url(img/excel.png);
+}
+.button_excel:disabled {
+    background-image: url(img/excel_d.png);
+}
+.button_save {
+    background-image: url(img/save.png);
+}
+.button_save:disabled {
+    background-image: url(img/save_d.png);
+}
+.button_close {
+    background-image: url(img/close.png);
+}
+.button_close:disabled {
+    background-image: url(img/close_d.png);
+}
+.button_delete {
+    background-image: url(img/delete.png);
+}
+.button_delete:disabled {
+    background-image: url(img/delete_d.png);
+}
+.button_upload {
+    background-image: url(img/upload.png);
+}
+.button_upload:disabled {
+    background-image: url(img/upload_d.png);
+}
+.button_txt {
+    background-image: url(img/txt.png);
+}
+.button_txt:disabled {
+    background-image: url(img/txt_d.png);
+}
+.button_search {
+    background-image: url(img/search.png);
+}
+.button_search:disabled {
+    background-image: url(img/search_d.png);
+}
+.button_print {
+    background-image: url(img/print.png);
+}
+.button_print:disabled {
+    background-image: url(img/print_d.png);
+}
+.button_package {
+    background-image: url(img/package.png);
+}
+.button_package:disabled {
+    background-image: url(img/package_d.png);
+}
+.button_key {
+    background-image: url(img/key.png);
+}
+.button_key:disabled {
+    background-image: url(img/key_d.png);
+}
+.button_left {
+    background-image: url(img/left.png);
+}
+.button_left:disabled {
+    background-image: url(img/left_d.png);
+}
+.button_right {
+    background-image: url(img/right.png);
+}
+.button_right:disabled {
+    background-image: url(img/right_d.png);
+}
+.button_change {
+    background-image: url(img/change.png);
+}
+.button_change:disabled {
+    background-image: url(img/change_d.png);
+}
+.button_up {
+    background-image: url(img/up.png);
+}
+.button_up:disabled {
+    background-image: url(img/up_d.png);
+}
+.button_down {
+    background-image: url(img/down.png);
+}
+.button_down:disabled {
+    background-image: url(img/down_d.png);
+}
+.button_link {
+    background-image: url(img/link.png);
+}
+.button_link:disabled {
+    background-image: url(img/link_d.png);
+}
+.button_unlink {
+    background-image: url(img/unlink.png);
+}
+.button_unlink:disabled {
+    background-image: url(img/unlink_d.png);
+}
+
+
+.button_options {
+    background-image: url(img/options.png);
+}
+.button_options:disabled {
+    background-image: url(img/options_d.png);
+}
+.button_mail {
+    background-image: url(img/mail.png);
+}
+.button_mail:disabled {
+    background-image: url(img/mail_d.png);
+}
+.button_alpha {
+    background-image: url(img/alfa.png);
+}
+.button_alpha:disabled {
+    background-image: url(img/alfa_d.png);
+}
+
+.button_pdf {
+    background-image: url(img/pdf.png);
+}
+.button_pdf:disabled {
+    background-image: url(img/pdf_d.png);
+}
+.button_csv {
+    background-image: url(img/csv.png);
+}
+
+.button_sheet {
+    background-image: url(img/sheet.png);
+}
+.button_sheet:disabled {
+    background-image: url(img/sheet_d.png);
+}
+
+.button_add {
+    background-image: url(img/add.png);
+}
+.button_add:disabled {
+    background-image: url(img/add_d.png);
+}

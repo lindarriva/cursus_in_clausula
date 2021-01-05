@@ -1,0 +1,131 @@
+/* ----- Contenuto del riquadro frameLeft, cioè il riquadro del testo -----*/
+
+#divTesto {
+    color:black
+}
+
+
+#divTesto p{
+    font-family: "georgia", "Times new roman", "serif";  
+    font-size: 14.5px;
+    text-align: left;
+    color:#000000
+   
+}
+
+p.intera, a.titoli, form.intera, div.intera {
+    font-family:'Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif' !important;
+    margin-left:60px;
+}
+
+
+/* titolo della sezione in grassetto bruno */
+p.titoli {
+    color:#582601 !important; 
+    font-weight:bold; 
+    margin-top:4px; 
+    margin-bottom:30px; 
+    font-size:15px;
+    margin-left:60px;
+    
+}
+/* parti non metriche del testo in grassetto bruno */
+p.c_t {
+    color:#582601 !important; 
+    font-weight:bold;
+    margin-top:20px; 
+    margin-bottom:4px;
+    padding-right:50px;
+    margin-left:60px;
+}
+/* font-variant:small-caps; */
+/* intera sezione */
+p.intera,div.intera {
+    color:#006633; 
+    font-weight:bold; 
+    margin-top:20px;
+    margin-bottom:4px
+}
+/* riga normale */
+p.c_v {
+    margin-top:4px; 
+    margin-bottom:4px;
+    margin-left:60px;    
+}
+p.prose {
+	text-align:justify !important;
+	margin-right:50px !important;
+	line-height:20px;
+	font-size:16px !important
+}
+
+/* numero di verso */
+p.c_n {
+    float:left; 
+    width:60px; 
+    margin:0px !important; 
+    padding:0px !important; 
+    text-align:center !important; 
+    border-width:0px
+}
+/* riga con numero di verso */
+p.vv {
+    margin-top:4px; 
+    margin-bottom:4px; 
+    margin-left:0px
+}
+/* riga vuota */
+p.blank {
+    margin-top:0px; 
+    margin-bottom:0px; 
+    padding-top:0px; 
+    padding-bottom:0px; 
+    height:20px;}
+/* visualizza intera sezione */
+A:link.titoli, A:visited.titoli  {
+    color: #006633; 
+    text-decoration:none
+}
+A:hover.titoli { 
+    color: #fb7d00; 
+    text-decoration:underline
+}
+/* evidenziato */
+.evidenziato {
+    color:red
+}
+.dis {
+    color:#aaaaaa
+}
+.fragm {
+    margin-left:60px
+}
+/* link variante */
+a:link.lectio, a:visited.lectio {
+    color:#0000aa;
+    text-decoration:none;
+    font-style:italic;
+    font-weight:bold
+}
+/*a:link.lectio, A:visited.lectio {color: #000000; background-color:#c7d7fa; text-decoration:underline}*/
+A:hover.lectio { 
+    color: #fb7d00; 
+    text-decoration: 
+        underline}
+A:hover.lectio {
+    color: #fb7d00;
+}
+a:link.evidenziato, a:visited.evidenziato {
+    color:red;
+}
+a:link.ancient, a:visited.ancient {
+    text-decoration:none;
+    font-weight:bold;
+    background-color:#fefefe;
+    padding-top:3px;
+    padding-bottom:2px;
+    padding-left:3px;
+    padding-right:3px;
+    border:1px blue solid;
+}
+

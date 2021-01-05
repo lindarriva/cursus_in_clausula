@@ -1,0 +1,438 @@
+/*
+div, p, label, td, li, select {
+    font-family:'Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif';
+    font-size:12px;
+}
+*/
+
+html {
+    width:100%;
+}
+body {
+    background-color:#efefef;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+/* La pagina standard e' contenuta entro 3 contenitori:
+
+1) div.gen: da' il colore di sfondo di tutta la finestra, in particolare delle fasce laterali non occupate;
+   permette la centratura del div.finestra
+2) div.finestra: delimita l'area centrale di 960px, con ombre su tutti i lati e contiene in background l'immagine della testata;
+   il suo margin-top di 7px stacca il bordo superiore per mostrare l'ombra;
+   il suo padding-top di 115px colloca il suo contenuto sotto l'immagine;
+   il suo margin-bottom la stacca dal footer
+3) table.frame: divide il corpo nel 'left' (che contiene il menu') e nel 'corpo'
+
+- il menu' di sinistra si colloca a 235px dall'alto per la somma di 115px del div.finestra + 120px del td.left;
+- il corpo si pone:
+
+	a) nella home a 175px (115 + 60, v. avanti)
+	b) nelle altre pagine a 115
+
+
+*/
+
+/* campi di input */
+.textbox {
+    border: 1px solid #c4c4c4;
+    height: 25px;
+    width: 275px;
+    font-size: 13px;
+    padding: 4px 4px 4px 4px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0px 0px 8px #d9d9d9;
+    -moz-box-shadow: 0px 0px 8px #d9d9d9;
+    -webkit-box-shadow: 0px 0px 8px #d9d9d9;
+}
+.textbox:focus {
+    outline: none;
+    border: 1px solid #88b3ce;
+    box-shadow: 0px 0px 8px #88b3ce;
+    -moz-box-shadow: 0px 0px 8px #7bc1f7;
+    -webkit-box-shadow: 0px 0px 8px #7bc1f7;
+}
+textarea.textbox {
+	font-family:"Lucida grande","sans serif";
+	font-size:13px;
+	padding:6px;
+}
+.textbox_1 {
+    border: 1px solid #c4c4c4;
+    height: 25px;
+    width: 275px;
+    font-size: 13px;
+    padding: 4px 4px 4px 4px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0px 0px 8px #d9d9d9;
+    -moz-box-shadow: 0px 0px 8px #d9d9d9;
+    -webkit-box-shadow: 0px 0px 8px #d9d9d9;
+}
+.textbox_1:focus {
+    outline: none;
+    border: 1px solid #f3b583;
+    box-shadow: 0px 0px 8px #f8c190;
+    -moz-box-shadow: 0px 0px 8px #f8c190;
+    -webkit-box-shadow: 0px 0px 8px #f8c190;
+}
+
+.txPiccolo {
+    height: 15px;
+}
+
+/* div float con funzione di label: a differenza di queste possono accettare una dimensione orizzontale*/
+div.divLabel {
+    float: left;
+    padding: 6px;
+    min-height: 18px
+}
+div.divBorder {
+    border: 1px solid #c4c4c4;
+    font-size: 13px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0px 0px 8px #d9d9d9;
+    -moz-box-shadow: 0px 0px 8px #d9d9d9;
+    -webkit-box-shadow: 0px 0px 8px #d9d9d9;
+    background-color: #dadada
+}
+
+
+/* pannelli di tipo titlePanel, con apertura e chiusura; esempio:
+
+    <div class="titlePanel" id="panelAUT">
+        <a class="closePanel" id="AUT" href="javascript:apri('AUT')">
+            AUTORI
+        </a>
+        <div class="closePanel" id="divAUT">
+            // contenuto .....
+        </div>
+    </div>
+
+l'id della div interna deve essere uguale all'id dell'<>, con prefisso 'div'
+
+*/
+
+div.titlePanel {
+    background-color: #f9f9f9;
+    padding: 4px;
+    margin-top: 5px;
+    margin-right: 10px;
+    border-radius:4px 4px 4px 4px;
+    -khtml-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    border: 1px solid #a8a8a8;
+    text-align: left;
+}
+
+a.closePanel, a:visited.closePanel, a.openPanel, a:visited.openPanel {
+    color:#000000;
+    font-weight: normal;
+    font-family:"lucida grande",arial,"sans serif";
+    font-size:11px;
+    text-decoration: none;
+    padding-left:15px;
+    background-position:0 1px;
+    background-repeat: no-repeat;
+}
+a.openPanel {
+    background-image: url(img/chiudi_panel.png);
+    background-position:0 2px;
+}
+a.closePanel {
+    background-image: url(img/apri_panel.png);
+    background-position:0 2px;
+}
+
+div.closePanel {
+    display: none;
+}
+div.openPanel {
+    display: block;
+}
+
+/* /////////////////////////////////////// */
+
+
+/* contenitore generale, entro cui si centra il div successivo */
+div.gen {
+    background-color:#efefef;
+    width:100%;
+    margin:0;
+    padding:0px
+}
+
+/* e' il contenitore di larghezza fissa (960px), a 115px dall'alto */
+
+div.finestra {
+    background-color:#fff;
+    height:100%;margin:0;padding:0;
+    /* ombra omogenea sui 4 lati */
+    box-shadow:0px 0px 10px #777;
+    -webkit-box-shadow: 0px 0px 10px #777;
+    -moz-box-shadow: 0px 0px 10px #777;
+    
+    /* 4 angoli arrotondati */
+    border-radius:10px 10px 10px 10px;
+    -khtml-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+
+    /*larghezza standard */
+    width:960px;
+    margin-top:7px;
+    margin-bottom: 40px;
+    padding-top: 115px;
+}
+
+/* pedice */
+div.pedice {
+    background-color:#585d67;
+}
+
+.panel {
+    border-radius:4px 4px 4px 4px;
+    -khtml-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    background-color:#ffffff;
+    margin:0;
+    padding:4px;
+    border: 1px solid #a8a8a8;
+    text-align: left;
+
+}
+
+.titoloPanel {
+    font-family:Arial;
+    font-weight: bold;
+    color:#146295;
+    font-size: 22px;
+}
+
+p.uni {
+
+    font-size:15px;
+    color:#fff;
+    font-variant:small-caps;
+    text-align:left;
+    line-height:14px;
+    white-space:nowrap
+}
+p.pedice {
+    color:#bbc;
+    font-size:11px;
+    text-shadow: 1px 1px 0 black
+}
+a:link.copyright, A:visited.copyright {
+    font-size:13px;
+    color:#fff;
+    font-weight:bold
+}
+a:hover.copyright {
+    text-decoration:underline;
+    color:#fff
+}
+a:link.contatti, A:visited.contatti {
+    color:#bbc
+}
+a:hover.contatti {
+    text-decoration:underline;color:#fff
+}
+
+/* immagini con ombra */
+img.ombra{
+    box-shadow:0px 0px 10px -2px #999;
+    -webkit-box-shadow: 0px 0px 10px -2px #999;
+    -moz-box-shadow: 0px 0px 10px -1px #999;
+}
+
+.panelAvviso {
+    width:100%;
+    margin-top:0px;
+    margin-bottom:15px;
+    background-color: #f9eca1
+}
+
+.messaggio {
+    color:#d46464;
+    font-weight: bold;
+    margin:0;
+    padding:0;
+    padding-left: 7px;
+}
+/* messaggio di attesa */
+#wait,.wait {
+    background-image: url(img/_loading.gif);
+    background-repeat:no-repeat;
+    background-position:0px 0px;
+    position:absolute;
+    z-index:10;
+    visibility:hidden;
+    width: 128px;
+    height: 15px;
+}
+#wait0 {
+    background-image: url(img/_loading0.gif);
+    background-repeat:no-repeat;
+    background-position:0px 0px;
+    position:absolute;
+    z-index:10;
+    visibility:hidden;
+    width: 120px;
+    height: 120px;
+}
+
+/* servono per assegnare un'icona personalizzata a un pulsante */
+.moveUpIcon {
+      background-image: url(img/alto.gif);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+}
+.moveDownIcon {
+      background-image: url(img/basso.gif);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+}
+
+.pdfIcon {
+      background-image: url(img/pdf.png);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+}
+.xmlIcon {
+      background-image: url(img/xml.png);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+}
+
+.helpIcon {
+      background-image: url(img/aiuto.gif);
+      background-repeat: no-repeat;
+      height: 21px;
+      width: 21px;
+}
+.closeIcon {
+      background-image: url(img/close.gif);
+      background-repeat: no-repeat;
+      height: 12px;
+      width: 12px;
+}
+.closeToolTipIcon {
+      background-image: url(img/closeToolTip.png);
+      background-repeat: no-repeat;
+      height: 2px;
+      width: 2px;
+}
+.previewIcon {
+      background-image: url(img/anteprima.png);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+}
+
+/* personalizza il TitlePane */
+.claro .myTitlePane .dijitTitlePaneTitle {
+    background-color: #ddeeff;
+    padding: 0 7px 3px;
+}
+
+.claro .myTitlePane .dijitTitlePaneContentOuter {
+    background-color: #ffffe5;
+}
+
+
+/* textarea */
+#tx {
+    font-family: "lucida grande";
+    font-size: 12px;
+    padding: 3px;
+    line-height: 20px;
+    cursor: default;
+    width: 98%;
+    height: 100%;
+}
+
+div.help, ul.help li, p.help {
+	font-family:'Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif';
+    font-size:13px;
+
+}
+
+div.help {
+    display: inline;
+}
+
+select.myselect {
+	height:23px	
+}
+ul.help li {
+    padding-bottom: 5px
+}
+
+ul.help{
+    padding-left: 20px
+}
+
+
+div.titoloDaniela {
+/* titolo di pagina bianco su sfondo blu */
+    background-color:#0075c1;
+    background-color:#006be1;
+    color:#ffffff;
+    font-family: "open sans";
+    text-align: right;
+    font-size:21px;
+    font-weight:300;
+    padding-top:.0%;
+    padding-bottom:.2%;
+    padding-right: 2%;
+/*    opacity:0.6*/
+
+}
+
+
+/* aspetto bicolore di una lista select aperta (non combo)*/
+.bicolor option{
+    font-size: 14px !important;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    background-color: #fff;    
+}
+
+.bicolor option:nth-child(odd) {
+    background-color: #ecf3ff
+}
+
+select.bicolor{
+	margin:0 !important;
+	padding:0 !important
+}
+
+
+progress[value] {
+    width: 400px;
+    height: 10px;
+}
+#divProgressBar {
+    display: inline;
+    visibility:hidden;
+    width: 400px;
+    height: 20px;
+    margin-left: 30px;
+}
+
+
+

@@ -1,0 +1,30 @@
+body{
+    background: #ffffff
+}
+
+#cookiePolicy, p.cookiePolicy-titolo, #cookiePolicy h1 {
+    font-family: "Lucida grande", verdana, arial, "sans serif";
+    font-size: 15px;
+    line-height: 21px;
+    color: #444444;
+    text-align: justify
+}
+
+#cookiePolicy {
+    padding: 60px;
+    padding-top: 30px;
+    
+}
+#cookiePolicy h1 {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 30px
+}
+
+p.cookiePolicy-titolo {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 23px;
+    margin-bottom: 50px;
+
+}

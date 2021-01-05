@@ -1,0 +1,59 @@
+<?php
+require "Menu.php";
+$menu = new Menu("bibliografia", $this->baseUrl());
+?>
+<script type="text/javascript">
+
+    require(["dojo/parser",
+        "dijit/layout/BorderContainer",
+        "dijit/layout/ContentPane"
+    ]);
+
+    
+
+</script>
+
+<style>
+input#uploader {
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+#message {
+    color:#d46464;
+    font-weight: bold;
+}
+
+</style>
+
+<div data-dojo-type="dijit/layout/BorderContainer" id="mainDiv">
+            <div id="divMostraBiblio" data-dojo-type="dijit/layout/ContentPane"
+                     class="panel"
+                     align="left"
+                     style="background-color: #ffffff;margin:30px;margin-top:20px;margin-bottom:20px;padding:20px;padding-top: 5px">
+                
+                L'attuale dizionario di riferimento per quantità delle vocali e accenti è stato curato da Luigi Tessarolo<br><br>
+                
+
+                Per le regole della fonosintassi usate nella suddivisione in sillabe il testo base di riferimento è:<br><br>
+                A. Traina-G. Bernardi Perini, <i>Propedeutica al latino universitario</i>, Bologna, Patron, 1995<sup>6</sup><br><br>
+
+               
+                Sui metodi statistici:
+                C. Muller, <i>Initiation à la statistique linguistique</i>, Paris, Larousse, 1956.<br/><br/><br/>
+
+                Per quanto riguarda la letteratura critica sulle clausole della prosa, i testi di riferimento impiegati per la messa a punto del programma sono:<br><br>
+                <table cellspacing="10">
+                    <tr><td><b>T. Janson, <i>Prose Rhythm in Medieval Latin from the 9th to 13th Century</i>, Stockholm, Almqvist & Wiksell, 1975.</b></td></tr>
+                    <tr><td>G. Orlandi, <i>“Clausolae” in Gildas’s “De excidio Britanniae”</i>, in <i>Gildas: New Approaches</i> cur. M. Lapidge - D.N. Dumville, Woodbridge, 1984 (pp. 129–149).</td></tr>
+                    <tr><td>G. Orlandi, <i>Le statistiche sulle clausole della prosa. Problemi e proposte</i>, in Filologia Mediolatina, vol. 5, 1998, pp. 1-35.</td></tr>
+                    <tr><td>L. G. Ricci, <i>Il ritmo quantitativo secondo Aili e Orlandi: due metodi a confronto</i>, in Filologia Mediolatina, 19, 2012, pp. 247-284.</td></tr>
+                </table>
+
+                <p>Si rende disponibile una bibliografia più completa e aggiornata, ancorché parziale, sull'argomento: <a href='<?php echo $this->baseUrl() ?>/bibliografia.pdf' target=”_blank” title=”bibliografia">BIBLIOGRAFIA</a></p>
+            </div>
+        
+    
+</div>

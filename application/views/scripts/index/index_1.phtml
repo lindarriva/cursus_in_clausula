@@ -1,0 +1,330 @@
+
+
+<script type="text/javascript">
+
+    require(["dojo/parser","dijit/Dialog"
+    ]);
+
+</script>
+
+<style>
+    li {
+        padding-bottom: 5px
+    }
+    h3 {
+        padding-top: 15px
+}
+</style>
+
+    <div class="mainDiv" align="left" style="padding-bottom:20px;min-height: 700px">
+        <?php
+        require "Menu.php";
+        $menu = new Menu("home", $this->baseUrl());
+        ?>
+        <div style="padding:5px;">
+
+
+            <table style="cellspacing:10; display:<?php echo $this->display ?>" >
+                <tr>
+
+                    <td style="width:70%">
+                        <div data-dojo-type="dijit/layout/ContentPane"
+                             class="panel"
+                             align="left"
+                             style="background-color: #ffffff;margin:10px;margin-top:0px;margin-bottom:0px;padding:5px;padding-top:5px">
+
+                            <p><font style="color:#990000; font-style:italic; font-size:16px; font-family: cloister black, serif">Cursus in Clausula</font> è 
+                                un progetto finalizzato a coadiuvare gli studiosi di testi latini nell’<b>analisi delle clausole metriche e ritmiche</b> della
+                                prosa. Il sito dedica ad ogni utente una sessione di lavoro dove è possibile archiviare i testi di studio e procedere con analisi. </p>
+                                
+                            
+                            <table cellspacing="0"><tr><td>
+                                        <img src="<?php echo $this->baseUrl() ?>/img/comandi_browser.png" align="middle"/>
+
+                                    </td>
+                                    <td>
+                                        Si consiglia vivamente, in tutte le funzioni del programma, di usare per la navigazione <b>esclusivamente i comandi interni</b>
+                                         (menù, pulsanti ecc.),
+                                        evitando l'impiego dei tasti del browser illustrati nell'immagine ("Torna indietro", "Ricarica la pagina", "Cronologia" ecc.).
+                                    </td>
+                                </tr>
+                                <tr><td>
+                                        <img src="<?php echo $this->baseUrl() ?>/img/browsers_mini.png" alt="browser" align="middle"/>
+                                    </td>
+                                    <td>
+                                        Il programma è stato testato sui browser rappresentati nell'immagine.
+                                    </td>
+                                </tr>
+
+                            </table>
+                           
+                        </div>
+                </td>
+
+
+
+                    <td class="panel" id="loginPanel" style="width:30%; background-color: #dfe6ea">
+                        <form data-dojo-type="dijit/form/Form"
+                              data-dojo-id="passwForm"> <!--//tutta questa parte inutile con uso dei form Zend!-->
+                            <script type="dojo/on" data-dojo-event="submit" data-dojo-args="e">
+                                e.preventDefault(); // prevent the default submit
+                                // verifica la validità dei dati; in caso negativo il submit non è eseguito
+                                if(!passwForm.isValid()){
+                                    document.getElementById('message').innerHTML = 'I dati inseriti non sono validi';
+                                    return;
+                                }
+                                // esegue il submit
+                                dojo.xhrPost( {
+                                        url: '<?php echo $this->baseUrl() ?>/index/login',  // file destinatario della chiamata ajax:
+                                        content: {password: document.getElementById("password").value,
+                                                username: document.getElementById("login").value
+                                        },
+                                        load: function(response) {
+                                            if (response.indexOf("@@@@@@@@@@") > -1) {
+                                                location.href = '<?php echo $this->baseUrl() ?>/index/index';
+                                            } else {
+                                                document.getElementById('message').innerHTML = response;
+                                            }
+                                        },
+                                        error: function(error){
+                                            alert("ok=" + error);
+                                        }
+                                });
+                            </script>
+
+                            <table cellspacing="2" border="0"><tr>
+                                <td><label for='login'>E-mail:</label></td>
+                                <td>
+                                <input type="text" id="login" name="login"
+                                       data-dojo-type="dijit/form/ValidationTextBox"
+                                       data-dojo-props="required:true"
+                                       missingMessage="Il nome utente è obbligatorio"/>
+                                </td>
+                                </tr><tr><td><label for='password'>Password:</label></td>
+                                <td>
+                                <input type="password" id="password"
+                                       data-dojo-type="dijit/form/ValidationTextBox"
+                                       data-dojo-props="required:true"
+                                       missingMessage="La password è obbligatoria"/>
+                            </td></tr>
+                            <tr><td colspan="2" align="right">
+                                <button data-dojo-type="dijit/form/Button" id="esegui" type="submit">Login</button>
+                            </td></tr>
+                            <tr><td colspan="2" align="justify">
+                                <p id="message" class="messaggio">
+                                </p>
+                                </td>
+                            </tr>
+                            <tr><td colspan="2" align="justify">
+                                La procedura di registrazione consente di ottenere uno spazio dedicato dove archiviare i testi e procedere con l'analisi delle clausole. <br/>
+                                <a class="messaggio" href="#" onClick="newPasswDialog.show()">Nuovo utente</a><br/>
+                            </td></tr>
+                            </table>
+                            <div>
+                            </div>
+                        </form>
+
+                    </td>
+                </tr>
+            </table>
+            
+            <table cellspacing="2" border="0">
+                <tr>
+                <td>
+                    <div data-dojo-type="dijit/layout/ContentPane"
+                             class="panel"
+                             align="justify"
+                             style="background-color: #f5f5f5;margin:10px;margin-top:0px;margin-bottom:10px;padding:10px;padding-top: 5px; border: none">
+                        
+                        <p><b>INTRODUZIONE</b><br>
+                           Dal 1975, anno d’uscita del volume di Tore Janson,<i> Prose Rhytm in Medieval Latin from the 9th to the 13th Century</i>, chiunque voglia occuparsi di cursus deve per forza fare i conti con i calcoli statistici del metodo della “comparazione interna” (<i>internal comparison</i>, pp. 19-26). Prendendo come riferimento l’impostazione teorica e i procedimenti d’indagine su ritmo prosastico accentuativo e quantitativo usati da Giovanni Orlandi e la sua scuola si offre allo studioso uno strumento che, dato un testo in prosa adeguatamente allestito per l’indagine del cursus, è in grado di:</p>
+
+                        <ul><li> operare la scansione quantitativa di una clausola </li>
+                            <li>operare la classificazione ritmica di una clausola </li>
+                            <li>creare tabelle con la classificazione di tutte le clausole quantitative e ritmiche osservate con l’immediato calcolo di percentuali e indice di Pearson </li>
+                        </ul>
+
+                        <p>I testi da sottoporre ad analisi devono essere trasferiti dal computer locale al server, dove permangono nell'archivio dell'utente da una sessione all'altra, fino a quando non si decida di eliminarli: la pagina dedicata all'archiviazione dei file è <b>"ARCHIVIO TESTI"</b>.<br/><br/>
+                        La pagina <b>ANALISI</b> si compone di due momenti: </p><ul style="list-style:none">
+                        <li>nella prima fase, <b>testi</b>, l'utente selezionerà il testo su cui intende operare la scansione del cursus</li>
+                        <li>cliccando la linguetta <b>analizza</b>, si accederà ai vari risultati di analisi del cursus proposti in singole tabelle dedicate (tabella di controllo sistematico delle clausole; tabelle con valori statistici su clausole quantitative [tipo: +-|++*], su clausole accentuative[tipo p 3p], sul cursus [tipo: xooxo, planus]).
+                        </ul>
+                        <p>In ogni pagina, l’utente potrà usufruire di istruzioni <i>ad hoc</i> e ricorrere ai tasti di aiuto <img src="<?php echo $this->baseUrl() ?>/img/aiuto.png" alt="help" align="middle"/>   per chiarimenti su simbologia e dettagli sui calcoli statistici.</p>
+                        <p>Si consulti la pagina <a href="<?php echo $this->baseUrl() ?>/bibliografia/bibliografia"><b>BIBLIOGRAFIA</b></a> per chiarimenti sulla metodologia.</p>
+
+                    </div>
+                </td>
+                
+                </tr>
+                <tr>
+                    <td>
+                        <div data-dojo-type="dijit/layout/ContentPane"
+                             class="panel"
+                             align="left"
+                             style="background-color: #ffffff;margin:5px;margin-top:0px;margin-bottom:0px;padding:5px;padding-top:3px">
+                            <table>
+                                <td style="width:60%">
+                             <table cellspacing="5" cellpadding="12"><tr>
+                                    <td cellspacing="5">
+                                        <a href="http://www.traditiopatrum.it/">
+                                    <img src="<?php echo $this->baseUrl() ?>/img/link_TRAPAT.png" align="bottom"/></a><br>
+<!--                                    <img src="<?php echo $this->baseUrl() ?>/img/Logo_Uniud.png" align="bottom"/><br>-->
+                                    
+                                    </td>
+                                    <td align="justify" cellpadding="5" cellspacing="5">
+                                        Il progetto è stato realizzato all'interno del progetto FIRB 2008  <a href="http://www.traditiopatrum.it/">
+                                        <i>Traditio Patrum. La trasmissione testuale dei Padri latini tra mondo classico e medievale</i></a> così come <br/>
+                                    </td>
+                                    <td align="justify" cellpadding="5" cellspacing="5">                                    </td>
+                                </tr>
+                                <tr>
+                                    <td cellspacing="5">
+                                        <a href="http://www.pedecerto.eu/"><img src="<?php echo $this->baseUrl() ?>/img/link_PEDECERTO.png" align="bottom"/></a>
+                                    </td>
+                                    <td align="justify" cellpadding="5" cellspacing="5">
+                                        <a href="http://www.pedecerto.eu/"><i>Pede Certo</i></a> il tool per la scansione degli esametri latini.
+                                    </td>
+                                    <td align="justify" cellpadding="5" cellspacing="5">                                               </td>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        Principal Investigator: Emanuela Colombi<br/>
+                                        Realizzazione tecnica: Linda Spinazzè<br/>
+                                        Vocabolario 'semilemmatizzato': Luigi Tessarolo<br/>
+                                    </td></tr>
+
+                            </table>
+                                    </td>
+                                    
+                                    
+                                    
+                                    
+                                   
+                            </table>
+
+
+
+
+
+                        </div>
+                </td>
+                </tr>
+               
+                
+            </table>
+
+                      
+
+            <div data-dojo-type="dijit/Dialog" id="newPasswDialog" closable="true" data-dojo-id="newPasswDialog" title="Registrazione"
+                 style="display:none;">
+                <form metod="post"
+                      data-dojo-type="dijit/form/Form"
+                      data-dojo-id="newUserForm">
+
+                    <script type="dojo/on" data-dojo-event="submit" data-dojo-args="e">
+                        e.preventDefault(); // prevent the default submit
+
+                        // verifica la validità dei dati; in caso negativo il submit non è eseguito
+                        if(!newUserForm.isValid()){
+                            document.getElementById('newMessage').innerHTML = 'I dati inseriti non sono validi';
+                            return;
+                        }
+
+                        // esegue il submit
+                        dojo.xhrPost( {
+                                url: '<?php echo $this->baseUrl() ?>/index/newuser',
+                                // passaggio dei parametri POST
+                                content: {password: document.getElementById("newPassword").value,
+                                        username: document.getElementById("newLogin").value
+                                },
+                                // funzione eseguita in risposta
+                                load: function(response) {
+                                    if (response.indexOf("@@@@@@@@@@") > -1) {
+                                        document.getElementById("newMessage").innerHTML = response.substring(10);
+                                    }else{
+                                        location.href = '<?php echo $this->baseUrl() ?>/index/index';
+                                        newPasswDialog.hide();
+                                    }
+
+                                },
+                                // funzione eseguita in caso di errore
+                                error: function(error){
+                                        alert("ok=" + error);
+                                }
+                        });
+                    </script>
+
+
+                    <div class="dijitDialogPaneContentArea">
+                        <table cellspacing="15"><tr>
+                            <td><label for='newLogin'>E-mail:</label></td>
+                            <td>
+                            <input type="text" id="newLogin" name="newLogin"
+                                   data-dojo-type="dijit/form/ValidationTextBox"
+                                   data-dojo-props="required:true"
+                                   missingMessage="Il nome utente è obbligatorio"/>
+                            </td>
+                            </tr>
+                            <tr><td><label for='newPassword'>Password:</label></td>
+                            <td>
+                            <input type="password" id="newPassword" name="newPassword"
+                                   data-dojo-type="dijit/form/ValidationTextBox"
+                                   data-dojo-props="required:true"
+                                   missingMessage="La password è obbligatoria"/>
+                            </td></tr>
+                            <tr><td colspan="2">
+                                <p id="newMessage" class="messaggio" style="width:250px"></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dijitDialogPaneActionBar">
+                        <!-- è un pannello apposito per i pulsanti -->
+                        <button data-dojo-type="dijit/form/Button" id="eseguiNew" type="submit">Registra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+    </div>
+ <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'"
+                 class="panel"
+                 align="justify"
+                 style="background-color: #ccccff">
+                 <table  width="100%">
+                <tr>
+                    <td>
+                        <p align="center">Università degli studi<br/> di Udine <br/>
+                            <img src="<?php echo $this->baseUrl() ?>/img/uniud_viola.png" align="center"/><br/>
+                            DIPARTIMENTO DI <br/>STUDI UMANISTICI
+                        </p>
+                    </td>
+                    <td>
+                        <p align="center"> FIRB 2008<br/><br/>
+                        <img src="<?php echo $this->baseUrl() ?>/img/TRAPAT.png" align="center"/></p>
+                    </td>
+                   <td>
+                        <p><img src="<?php echo $this->baseUrl() ?>/img/valid-xhtml10.png" align="right"/></p><br/><br/>
+                        <p><img src="<?php echo $this->baseUrl() ?>/img/browsers_mini.png" align="right"/></p>
+                    </td>
+                    <td >
+                        <p align="right">Sito a cura di: <br/>
+                            <a href="http://it.linkedin.com/pub/linda-spinazze/27/b83/317/en"> Linda Spinazzè </a></p>
+                        <p align="right"><img src="<?php echo $this->baseUrl() ?>/img/mail.gif" align="bottom"/>
+                            <b>Contatti:</b> <br>
+                            <a href="mailto:info@cursusinclausula.eu"> info@cursusinclausula.eu </a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center">
+                        <br/><br/>
+                        <p>Ultimo aggiornamento: 6 Ottobre 2014</p>
+                    </td>
+                </tr>
+            </table>
+
+
+            </div>

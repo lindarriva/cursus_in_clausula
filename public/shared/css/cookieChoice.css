@@ -1,0 +1,27 @@
+#cookieChoiceInfo {
+    font-family: "Lucida grande", verdana, arial, "sans serif";
+    font-size: 13px;
+    padding: 7px !important;
+    background-color: #d1d1d1 !important;
+/*    opacity:0.8 !important*/
+}
+
+#cookieInfoLink {
+    text-decoration: none !important;
+}
+#cookieInfoLink:hover {
+    color:#41a64c !important;
+}
+
+#cookieChoiceDismiss:link, #cookieChoiceDismiss:visited {
+  background-color: #24890d;
+  color: #FFF;                
+  font-weight: 300;
+  font-size: 13px;
+  padding: 3px 10px;          
+  border-radius:  3px;
+  text-decoration:none;
+}
+#cookieChoiceDismiss:hover {  
+  background-color: #41a62a;
+}

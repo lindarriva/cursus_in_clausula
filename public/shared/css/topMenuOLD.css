@@ -1,0 +1,121 @@
+
+#divTopMenu{
+    background-color: #efefef;
+    border-left:1px #cccccc solid;
+    border-right:1px #cccccc solid;
+}
+table.topMenu{
+    height:35px;
+    padding-top: 5px;
+
+}
+td.menuItem, #dropmenudiv{
+    font-family:'Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif';
+    font-size:12px;    
+}
+td.menuVuoto{
+    width: 5px;
+}
+td.menuItem{
+    cursor:pointer;
+    height:30px;
+    margin-left:5px;
+    vertical-align: center;
+    color:#000000;
+    border-top: solid 1px #cccccc;
+    border-left: solid 1px #cccccc;
+    border-right: solid 1px #cccccc;
+    background-color:#ffffff;
+    border-radius:5px 5px 0 0;
+    -khtml-border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
+    -webkit-border-radius:5px 5px 0 0;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+td.disabled{
+    cursor:default;
+    color:#777;
+    background-color:#ededed;
+}
+
+
+a:link.main,a:visited.main {    
+    text-decoration:none;
+    color:#000000;
+
+}
+td.menuItem:hover, td.topScelto, #dropmenudiv a:hover{
+    /*
+    background-image:-webkit-linear-gradient(#e4f2ff,#abd6ff);
+    background-image:-webkit-gradient(linear, top, bottom, color-stop(0, #fff), color-stop(1, #ededed));
+    background-image:-moz-linear-gradient(#e4f2ff,#abd6ff);
+    background-image:-o-linear-gradient(#fff,#ededed);
+    background-image:-ms-linear-gradient(#fff,#ededed);
+*/
+    border: 1px solid #759dc0;
+    border-bottom: 0;
+
+    background: #e4f2ff; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U0ZjJmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhYmQ2ZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #e4f2ff 0%, #abd6ff 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4f2ff), color-stop(100%,#abd6ff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #e4f2ff 0%,#abd6ff 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #e4f2ff 0%,#abd6ff 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #e4f2ff 0%,#abd6ff 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #e4f2ff 0%,#abd6ff 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f2ff', endColorstr='#abd6ff',GradientType=0 ); /* IE6-8 */
+
+    /*border-bottom: 1px solid #acd7ff;*/
+}
+
+td.disabled:hover{
+    background-image:none;
+    border-top: solid 1px #cccccc;
+    border-left: solid 1px #cccccc;
+    border-right: solid 1px #cccccc;
+}
+
+
+a:hover.main, a:link.topScelto,a:visited.topScelto,#dropmenudiv a:hover {
+}
+a:hover.main, a:link.topScelto,a:visited.topScelto {
+}
+
+
+a:link.topScelto,a:visited.topScelto{
+    /*border-bottom: 1px solid #acd7ff;*/
+}
+
+/* menu' a tendina */ 
+#dropmenudiv{
+    position:absolute;
+    margin-top:0;
+    text-align:left;
+    border-bottom: 1px solid #759dc0;
+    line-height:30px;
+    z-index:100;
+    box-shadow:0px 0px 10px -1px #aaa;
+    -webkit-box-shadow: 0px 0px 10px -1px #aaa;
+    -moz-box-shadow: 0px 0px 10px -1px #aaa;
+
+
+}
+
+#dropmenudiv a{
+    display: block;
+    color:#444;
+    background-color:#fff;
+    text-indent: 10px;
+    padding: 1px 0;
+    border-top: 1px solid #759dc0;
+    border-left: 1px solid #759dc0;
+    border-right: 1px solid #759dc0;
+    text-decoration: none
+}
+
+#dropmenudiv a:hover{ /*hover background color*/
+    text-decoration: none
+}

@@ -1,0 +1,87 @@
+/* Poiché in default.css c'è la classe .panel, che è definita anche in BootStrap
+questa soprascrittura di fatto la disattiva, specie per il colore del bordo
+e per il padding; è necessario che questo foglio di stile sia linkato
+dopo default.css e prima di quello di BootStrap */
+
+
+.panel {
+    border-radius:none;
+    -khtml-border-radius:none;
+    -webkit-border-radius:none;
+    -moz-border-radius: none;
+    background-color:#ffffff;
+    padding:0px;
+    border: none;
+}
+
+/* titolo del pannello che si collassa in BS */
+h4.panel-title {
+	/*
+	background-image: url(img/apri.png);
+    background-position:0px 2.5px;
+    background-repeat: no-repeat;
+    padding-left:15px	
+    */
+}
+
+/* impostazione della home page con colonna sinistra per i link */
+    #main {
+        background-color: #ffffff;
+        padding-top: 0px;
+    }
+
+    #sidebarL {
+        background-color: #f2f2f2;
+        margin:0;
+        margin-bottom: 20px;
+        margin-right:7%;
+        margin-left:7%;
+        padding:7%;
+        height: 100%;
+
+    }
+    @media screen and (min-width: 760px) { /* 600 */
+        #main {
+            width:80%;
+            margin:0;
+            float:left;
+            padding: 2%
+        }
+        #sidebarL {
+            display: block;
+            width:13.2%;
+            float:left;
+            margin-right:0%;
+            margin-left:3%;
+            margin-top:60px;
+            padding-top: 25px;
+            padding-bottom: 30px;
+            padding-left: 1.9%;
+            padding-right: 1.05%;
+            margin-bottom:50px
+        }
+    }
+/* --------------------------------------------- */
+
+
+/* link per le pagine di testo  */
+    a:link.default-home, a:visited.default-home {
+        border-bottom: 2px solid #88b9df;   /*#4ab9dc; #3ca4c9*/;
+        color:#000;
+        transition-property: background-color;
+        transition-duration: .5s;
+    }
+    a:hover.default-home {
+        text-decoration: none;
+        background-color: #a8d9ff;
+        border-bottom: 2px solid #a8d9ff;
+    }
+
+
+    div.permalink {
+		font-family: verdana;
+		font-size:13px;
+        float:left;
+    }
+
+

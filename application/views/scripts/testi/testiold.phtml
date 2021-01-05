@@ -1,0 +1,766 @@
+ <?php
+require "Menu.php";
+$menu = new Menu("testi", $this->baseUrl());
+?>
+<script type="text/javascript">
+    var myArchivio;
+    var myIstruzioni;
+    var myDidascalia;
+
+    require(["dojo/parser",
+        "dijit/layout/BorderContainer",
+        "dijit/layout/ContentPane",
+        "dijit/form/ComboBox"
+    ]);
+
+    require(["dojo/ready", "dijit/TooltipDialog", "dijit/form/DropDownButton"], function(ready, TooltipDialog, DropDownButton){
+    ready(function(){
+
+        var myDialog = new TooltipDialog({
+            content:
+             '<p style="width:600px"; align="justify">I file testuali dovranno essere in formato txt e saranno stati opportunamente rivisti dallo studioso che '
++ 'avrà l\'accortezza di controllare la punteggiatura del testo da analizzare secondo le seguenti avvertenze. Il programma considera <b>clausola</b> qualsiasi '
++ 'porzione di testo che fornisca almeno 8 sillabe prima di una <b>pausa forte</b>. Sono stati classificati come segni di interpunzione di pausa forte il '
++ '<b>punto fermo</b>, il <b>punto di domanda</b> e <b>il punto esclamativo</b>; due punti, punto e virgola e virgole corrispondono invece a delle pause deboli. Pertanto '
++ 'se l\'utente vorrà considerare come clausole anche incisi tra virgole (i <i>rhetorical kolon</i> di Habinek, 1985) o frasi contraddistinte da pause deboli, '
++ 'dovrà avere la pazienza di sostituire i segni di punteggiatura deboli, con quelli forti <b>prima</b> di operare l\'upload del testo. Le virgolette non sono '
++ 'riconosciute dal programma come elementi significativi, se pertanto si intende escludere dall\'analisi le clausole di eventuali citazioni (bibliche o letterarie) '
++ 'talvolta riportate in clausola si dovrà eliminare il testo della citazione o semplicemente sostituire il punto con altro segno di punteggiatura debole al termine della stessa.</p>'
++ '<p style="width:600px"; align="justify">Consultando il report l\'utente può capire in quali casi il programma non è stato in grado di risolvere una clausola dal punto di vista prosodico'
++ '(più spesso) o ritmico (raramente) e richiede pertanto un intervento di marcatura.<br/> I casi più comuni riguardano l\'incapacità di distinguere'
++ ' vocali brevi e vocali lunghe in parole che di fatto ammettono entrambe le forme (per esempio rosă e rosā).<br/> Per risolvere le ambiguità è necessario'
++ ' ricorrere ad una marcatura manuale delle parole interessate dall\'avvertimento di Errore ed eventualmente Avviso elencate nel report.<br/> La marca esplicativa dovrà:<br/>'
++ ' <ol><li> seguire immediatamente (senza spazi) la parola incerta</li>'
++ ' <li> essere delimitata dai segni <bold>(==</bold> e <bold>)</bold></li>'
++ ' <li> utilizzare le convenzioni <bold>+</bold> (sillaba lunga) e <bold>-</bold> (sillaba breve)</li></ol></p>'
++ ' <p style="width:600px"; align="justify"><img src="<?php echo $this->baseUrl() ?>/img/error_mini.png" align="bottom"/><b>ERRORE</b> è l\'unico caso dove la parola,'
++ ' non trovata nel vocabolario e non risolta dal programma, potrebbe far escludere la clausola dall\'analisi, sia ritmica che metrica.'
++ ' Per evitare che la clausola sia scartata dall\'elaborazione delle tabelle statistiche è necessario che l\'utente intervenga apponendo'
++ ' una marca esplicativa della sequenza prosodica immediatamente dopo la parola che ha prodotto il problema. </p>'
++ ' <p style="width:600px"; align="justify"><img src="<?php echo $this->baseUrl() ?>/img/warning_viola_mini.png" align="bottom"/>Questo tipo di <b>AVVISO</b> notifica che la clausola,'
++ 'anche se risolta dal programma con un criterio casuale, presenta una parola con più possibilità di scansione quantitativa.</p>'
++ ' <p style="width:600px"; align="justify"><img src="<?php echo $this->baseUrl() ?>/img/warning_mini.png" align="bottom"/>Quest\'altro <b>AVVISO</b> segnala invece la'
++ ' presenza di una parola con quantità ambigua ma risolta con la soluzione statisticamente più probabile (esempio: mănĭbŭs, nome comune; solamente qualora il testo trattasse davvero degli dei Mani, l\'utente dovrebbe intervenire'
++ ' istruendo il programma a leggere la prosodia secondo la scansione del nome proprio: Mānĭbŭs).<br/><br/></p>'
++ ' <p style="width:600px"; align="justify">ESEMPIO DI RISOLUZIONE:<br/><img src="<?php echo $this->baseUrl() ?>/img/error_mini.png" align="bottom"/>'
++ ' <b>!!ERRORE!!</b> trovate più prosodie per la parola: VOLVERIT (volvĕrĭt, vŏlŭĕrĭt) in clausola: Horum orationibus, quae aperto scilicet'
++ ' fiunt ostio, qui uoluerit se commendet </p>'
++ '  <p style="width:600px"; align="justify"> In testo è necessario aggiungere:  uoluerit(==----)</p>'
++ '  <p style="width:600px"; align="justify">Infine il report rende conto anche di tutte le clausole scartate perché considerate troppo brevi per essere incluse'
++ '  significativamente nelle tabelle statistiche.</p>'
++ '  <p style="width:600px"; align="justify"><b>* NB.</b> prima di controllare il report, è necessario assicurarsi che la codifica di visualizzazione sia corretta!</p>'
++ '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+
+        myDidascalia = new DropDownButton({
+            label: "AVVERTENZE",
+            dropDown: myDialog
+        });
+        document.getElementById("help_didascalia").appendChild(myDidascalia.domNode);
+
+        var myDialog = new TooltipDialog({
+            content:
+             '<p style="width:400px"; align="justify">Questo spazio è dedicato alla visualizzazione di tutti i file archiviati e pronti per l\'analisi. '
+         +'Per importare un nuovo testo, cliccare sul pulsante \'nuovo\' a destra; per attivare gli altri tasti del controllo generico del testo (codifica, rinomina '
+     + 'o elimina file), selezionare il file desiderato dall\'archivio. </p>'
++ '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+
+        myArchivio = new DropDownButton({
+            label: "?",
+            dropDown: myDialog
+        });
+        document.getElementById("help_archivio").appendChild(myArchivio.domNode);
+
+         var myDialog = new TooltipDialog({
+            content:
+            '<div align="justify" style="width:300px"><p >Per importare un file nell\'archivio è necessario cliccare sul tasto \"nuovo" e '
+        +'selezionare il testo che si desidera salvare e sottoporre ad analisi. I file testuali dovranno essere in formato txt e saranno' 
+        +' stati opportunamente rivisti dallo studioso che avrà l\'accortezza di controllare la punteggiatura del testo da analizzare secondo' 
+        +' le seguenti avvertenze. Il programma considera <b>clausola</b> qualsiasi porzione di testo che fornisca almeno 8 sillabe prima di una <b>pausa forte</b>.' 
+        + ' Sono stati classificati come segni di interpunzione di pausa forte il punto fermo, il punto di domanda e il punto esclamativo; '
+        + 'due punti, punto e virgola e virgole corrispondono invece a delle pause deboli. </p>'
+        + '<p > '
+        +' Una volta importato il testo e selezionato dalla lista di sinistra, è possibile: <br/>'
+        +' <ul><li><img src="<?php echo $this->baseUrl() ?>/img/codifica.png" align=""/> controllare il testo ed eventualmente modificare la codifica di visualizzazione dei caratteri '
+        +' trasformandola quindi in UTF-8, ovvero la codifica di base prescelta per il corretto funzionamento dell\'analisi.</li>'
+        + '<li><img src="<?php echo $this->baseUrl() ?>/img/dettagli.png" align=""/>controllare i dettagli del file archiviato</li>'
+        + '<li><img src="<?php echo $this->baseUrl() ?>/img/rinomina.png" align=""/>rinominare e/o cambiare il titolo del file, intervenire sulle parole con i tag "( = = + - ) " opportuni per la scansione corretta.</li>'
+        + '<li><img src="<?php echo $this->baseUrl() ?>/img/elimina.png" align=""/>eliminare il singolo file</li></ul></p></div>'
+        + '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+
+        myIstruzioni = new DropDownButton({
+            label: "?",
+            dropDown: myDialog
+        });
+        document.getElementById("help_istruzioni").appendChild(myIstruzioni.domNode);
+
+        
+});
+});
+
+
+
+   function sfoglia(){
+        // questo metodo associa il click del pulsante "nuovo" all'oggetto hidden "uploader"
+        // che è un input di tipo "file"; l'espediente serve a ottenere lo stile, altrimenti non realizzabile
+        // nell'input di tipo "file"
+        var input = document.getElementById("uploader");
+        input.click();
+    }
+    function importaFile(){
+        document.myForm.submit();
+        
+    }
+   
+   
+    function modifica(){
+        apriTesto();
+        
+        var azione = "modifica";
+        var obj = document.getElementById("tx_rn");
+//        var x = document.getElementsByName("EVItesti");
+        var id = document.getElementById("EVItesti").value;
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: id
+            },
+            // funzione eseguita in risposta
+
+            load: function() {
+                var n = response.indexOf("@@@@@@@@@");
+                document.getElementById("nomeTesto").value = response.substring(0, n);
+                document.getElementById("nomeTesto").focus();
+                document.getElementById("siglaTesto").value = response.substring(n + 10);
+           },
+             
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+        nascondiDestra();
+        document.getElementById("divRinomina").style.display = "block";
+    }
+
+    function apriTesto(){
+        var azione = "apriTesto";
+//        var x = document.getElementsByName("EVItesti");
+        var id = document.getElementById("EVItesti").value;
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: id
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                var n =response.indexOf('@@@@@@@@@@');
+                 document.getElementById("divRinomina").style.display = "block";
+                document.getElementById("tx_rn").innerHTML = response.substring(0,n);
+                
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function salva(){ //tasto "SALVA"
+//        var x = document.getElementsByName("EVItesti");
+        var idTesti = document.getElementById("EVItesti").value;
+//        var idTesti = id;
+//        var idTesti = x[0].id;
+        document.getElementById("idTesti").value = idTesti;
+        
+        var nomeTesto = document.getElementById("nomeTesto").value;
+        var siglaTesto = document.getElementById("siglaTesto").value;
+
+
+        if(nomeTesto == ""){
+            alert("E' necessario dare un nome al file");
+            document.getElementById("nomeTesto").focus();
+            return;
+        }
+        if(siglaTesto == ""){
+            alert("E' necessario dare un nome al testo");
+            document.getElementById("siglaTesto").focus();
+            return;
+        }
+
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: "salva",
+                idTesti: idTesti,
+                nomeTesto: nomeTesto,
+                siglaTesto: siglaTesto
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                if(response.indexOf("file") > -1){
+                    alert("Il nome del file è già in uso.");
+                    return;
+                } else if (response.indexOf("sigla") > -1){
+                   alert("Il nome del testo è già in uso.");
+                    return;
+                } else {
+                    document.modForm.submit();
+                }
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+
+       
+        
+    }
+
+    function abilitaTesto(){
+        disabilita(false);
+    }
+
+    function mostraProprieta(){
+        var azione = "mostraProprieta";
+//        var x = document.getElementsByName("EVItesti");
+        var id = document.getElementById("EVItesti").value;
+        nascondiDestra();
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: id
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                document.getElementById("divMostraProprieta").style.display = "block";
+                document.getElementById("divMostraProprieta").innerHTML = response;
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+
+    }
+
+    function disabilita(valore){
+        // Nota tecnica: ottenendo l'oggetto con document.getElementById() non riesco poi a renderlo attivo con obj.disabled = false;
+        // e questo posso capirlo (da notare che l'attributo risulta cambiato, ma senza effetto);
+        // quello che proprio non capisco è perché non risulti conosciuto il metodo dijit.byId(), che altro funziona benissimo;
+        // qui, inspiegabilmente, funziona solo dijit.registry.byId();
+        var obj = dijit.registry.byId("modifica");
+        obj.setAttribute("disabled", valore);
+        var obj = dijit.registry.byId("mostraProprieta");
+        obj.setAttribute("disabled", valore);
+        obj = dijit.registry.byId("eliminaTesto");
+        obj.setAttribute("disabled", valore);
+        obj = dijit.registry.byId("mostraTesto");
+        obj.setAttribute("disabled", valore);
+        obj = dijit.registry.byId("mostraReport");
+        obj.setAttribute("disabled", valore);
+    }
+
+    function nascondiDestra(){
+        document.getElementById("divMostraTesto").style.display = "none";
+        document.getElementById("divMostraProprieta").style.display = "none";
+        document.getElementById("divRinomina").style.display = "none";
+        document.getElementById("divMostraReport").style.display = "none";
+        document.getElementById("divMostraLog").style.display = "none";
+    }
+
+    function mostraTesto(){
+        var azione = "mostraTesto";
+        var id = document.getElementById("EVItesti").value;
+        var obj = dijit.byId('cambiaEncoding');
+//        var x = document.getElementsByName("EVItesti");
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: id
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                nascondiDestra();
+                var n = response.indexOf('@@@@@@@@@@');
+                document.getElementById("divMostraTesto").style.display = "block";
+                document.getElementById("tx").innerHTML = response.substring(0, n);
+//                document.getElementById("encoding").innerHTML = response.substring(n + 10);
+                obj.set("value", response.substring(n + 10));
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function cambiaEncoding(){
+        var azione = "cambiaEncoding";
+//        var x = document.getElementsByName("EVItesti");
+        var id = document.getElementById("EVItesti").value;
+        var encoding = dijit.byId("cambiaEncoding").value;
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: id,
+                encoding: encoding
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                var n = response.indexOf('@@@@@@@@@@');
+                document.getElementById("tx").innerHTML = response.substring(0, n);
+                if (encoding != "UTF-8"){
+                    dijit.registry.byId("salvaUTF").setAttribute("disabled",false);
+                }
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function salvaUTF(){
+        var azione = "salvaUTF";
+//        var x = document.getElementsByName("EVItesti");
+        var id = document.getElementById("EVItesti").value;
+        var encoding = dijit.byId("cambiaEncoding").value;
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {  azione: azione,
+                        idTesti: id,
+                        encoding: encoding
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                dijit.registry.byId("salvaUTF").setAttribute("disabled",true);
+                dijit.byId("cambiaEncoding").set("value", "UTF-8");
+
+
+
+                
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function nascondiTesto(){
+        nascondiDestra();
+        document.getElementById("tx").innerHTML = "";
+    }
+
+    function eliminaTesto(){
+        var azione = "eliminaTesto";
+//        var x = document.getElementsByName("EVItesti");
+        var id = document.getElementById("EVItesti").value;
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: id
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                if(response.indexOf("@@@@@@@@@@") > -1){
+                    alert("Non è possibile eliminare il testo, perché è componente di un corpus; eventualmente rimuoverlo da questo.")
+                }else{
+                    document.getElementById("tabellaTesti").innerHTML = response;
+                    disabilita(true);
+                }
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+    function eliminaTuttoOk(){
+        var azione = "eliminaTutto";
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                if(response.indexOf("@@@@@@@@@@") > -1){
+                    alert("Non è stato possibile eliminare uno o più testi, perché componenti di corpora.")
+                    response = response.substring(11);
+                }
+                document.getElementById("tabellaTesti").innerHTML = response;
+                confirmDialog.hide();
+                disabilita(true);
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function mostraReport(){
+        document.getElementById("divMostraLog").style.display = "none";
+        var azione = "mostraReport";
+//        var x = document.getElementsByName("EVItesti");
+        var id = document.getElementById("EVItesti").value;
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: id
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                nascondiDestra();
+                
+                document.getElementById("divMostraReport").style.display = "block";
+                document.getElementById("log").innerHTML = response;
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function nascondiReport(){
+        nascondiDestra();
+        document.getElementById("log").innerHTML = "";
+    }
+
+    function mostraPdfReport(){
+        var id = document.getElementById("EVItesti").value;
+        location.href="<?php echo $this->baseUrl() ?>/testi/pdf/idTesti/"+id;
+//        var x = document.getElementsByName("EVItesti");
+//        location.href="<?php echo $this->baseUrl() ?>/testi/pdf/idTesti/"+x[0].id;
+    }
+
+    
+require(["dojo/ready"], function(ready){ 
+    ready(function(){
+        
+    var attivaPulsanti = "<?php echo $this->attivaPulsanti?>";
+    if (attivaPulsanti == "vero"){
+        disabilita(false);
+    }
+
+     }); 
+});
+    
+
+</script>
+
+<style>
+input#uploader {
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+#message {
+    color:#d46464;
+    font-weight: bold;
+}
+
+#error {
+    color:#d46464;
+    font-weight: bold;
+}
+
+#warning{
+    color:#0000FF;
+    font-weight: bold;
+}
+
+#avviso{
+    color:#FFA07A;
+    font-weight: bold;
+}
+
+</style>
+
+<div data-dojo-type="dijit/layout/ContentPane" class="panel" id="contentHelp" style="margin:5px;margin-top: 5px;padding:5px">
+    <div id="help_didascalia" class="help"></div>
+</div>
+
+<div data-dojo-type="dijit/layout/BorderContainer" id="mainDiv">
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'leading'"
+         style="width:42%"
+         class="panel"
+         align="left"
+         id="tabellaTesti"
+         style="margin:30px;margin-top: 10px;padding:20px">
+        
+        
+        <?php            
+            $this->grid->render();
+        ?>
+        <p id="message">
+            <?php
+                echo $this->messaggio;
+            ?>
+        </p>
+
+        
+        
+    </div>
+
+    
+
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'trailing'"
+         style="width:52%"
+         class="panel"
+         align="left"
+         style="margin:30px;margin-top: 10px;padding:20px">
+        
+        <form method="post"
+              action="<?php echo $this->baseUrl() ?>/testi/testi"
+              id="myForm" 
+              name="myForm"
+              enctype="multipart/form-data" >
+
+
+            <button name="mostraTesto" data-dojo-type="dijit/form/Button" type="button"
+                    data-dojo-props="iconClass:'dijitIcon dijitIconSave'"
+                    id="mostraTesto"
+                    onclick="mostraTesto()"
+                    disabled="disabled"
+                    showLabel="false">
+                Mostra il testo
+            </button>
+
+            <button name="mostraProprieta" data-dojo-type="dijit/form/Button" type="button"
+                    data-dojo-props="iconClass:'dijitEditorIcon dijitEditorIconSelectAll'"
+                    id="mostraProprieta"
+                    onclick="mostraProprieta()"
+                    disabled="disabled"
+                    showLabel="false">
+                Mostra le proprietà
+            </button>
+
+
+            <button name="modifica" data-dojo-type="dijit/form/Button" type="button"
+                    data-dojo-props="iconClass:'dijitEditorIcon dijitEditorIconWikiword'"
+                    id="modifica"
+                    onclick="modifica()"
+                    disabled="disabled"
+                    showLabel="false">
+                Modifica
+            </button>
+            <button name="eliminaTesto" data-dojo-type="dijit/form/Button" type="button"
+                    data-dojo-props="iconClass:'dijitEditorIcon dijitEditorIconDelete'"
+                    id="eliminaTesto"
+                    onclick="eliminaTesto()"
+                    disabled="disabled"
+                    showLabel="false">
+                Elimina
+            </button>
+
+            <button name="mostraReport" data-dojo-type="dijit/form/Button" type="button"
+                    data-dojo-props="iconClass:'deleteAllIcon'"
+                    id="mostraReport"
+                    onclick="mostraReport()"
+                    disabled="disabled"
+                    showLabel="true">
+                Mostra Report
+            </button>
+
+            <button name="deleteAll" data-dojo-type="dijit/form/Button" type="button"
+                    data-dojo-props="iconClass:'deleteAllIcon'"
+                    onclick="confirmDialog.show()"
+                    id="deleteAll">
+                Elimina tutto
+            </button>
+            
+            <button name="nuovo" data-dojo-type="dijit/form/Button" type="button"
+                    data-dojo-props="iconClass:'dijitEditorIcon dijitEditorIconNewPage'"
+                    id="nuovo"
+                    onclick="sfoglia"
+                    showLabel="true">
+                Nuovo
+            </button>
+
+             <div style="display:inline">
+                 <div id="help_istruzioni" class="help"></div>
+            </div>
+            
+            <input type="hidden" name="MAX_FILE_SIZE" value="32000000" />
+            <input name="uploader"
+                  type="file"
+                  onchange="importaFile()"
+                  id="uploader" >
+        </form>
+        <form method="post"
+              action="<?php echo $this->baseUrl() ?>/testi/testi"
+              id="modForm"
+              name="modForm"
+              enctype="multipart/form-data" >
+            <input type="hidden" name="idTesti" id="idTesti" value="" />
+            <div id="divRinomina" class="panel" style="padding:20px;margin-top: 20px;display: none;background-color: #f4f4f4">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Nome del file: </label>
+                        </td>
+                        <td>
+                            <input type="text" name="nomeTesto" id="nomeTesto" value=""
+                                   style="width:300px"
+                            data-dojo-type="dijit/form/ValidationTextBox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Nome del testo: </label>
+                        </td>
+                        <td>
+                            <input type="text" name="siglaTesto" id="siglaTesto" value=""
+                                   style="width:300px"
+                                   data-dojo-type="dijit/form/ValidationTextBox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <textarea id="tx_rn"  name="tx_rn" rows="35" cols="50" style="padding: 3px; margin-bottom: 7px"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                
+                <button id="salva"
+                        name="salva"
+                       data-dojo-props="iconClass:'dijitEditorIcon dijitEditorIconSave'"
+                       onclick="salva()"
+                      data-dojo-type="dijit.form.Button" showLabel="true">
+                    Salva
+                </button>
+
+                <button id="rinominaAnnulla"
+                       onclick="nascondiDestra()"
+                      data-dojo-type="dijit.form.Button" 
+                      data-dojo-props="iconClass:'dijitIcon dijitIconPrint'"
+                      showLabel="true">
+                    Annulla
+                </button>
+            </div>
+        </form>
+            <div id="divMostraProprieta" class="panel" style="padding:20px;margin-top: 20px;display: none;background-color: #f4f4f4">
+            </div>
+
+            <div id="divMostraTesto" class="panel" style="display:none; margin-top: 10px">
+                <textarea id="tx" rows="35" cols="60" readonly style="margin-bottom: 7px"></textarea>
+                <table>
+                    <tr>
+                        <td>
+                            <button name="nascondiTesto" data-dojo-type="dijit/form/Button" type="button"
+                                    data-dojo-props="iconClass:'dijitIcon dijitIconPrint'"
+                                    id="nascondiTesto"
+                                    onclick="nascondiTesto()">
+                                Chiudi
+                            </button>
+                        </td>
+                        <td>
+                            <label>Cambia la codifica dei caratteri</label>
+                        </td>
+                        <td>
+                            <select data-dojo-type="dijit/form/FilteringSelect"
+                                onchange="cambiaEncoding()"
+                                id="cambiaEncoding" name="cambiaEncoding">
+                                <?php foreach ($this->arrayEnc as $value) {
+                                       echo "<option value=\"" . $value . "\">" . $value . "</option>";
+                                  }?>
+                            </select>
+<!--                            <div class="styledMySelect" style="width: 100px" onChange="cambiaEncoding()">
+                                <select class="mySelect" style="width: 130px" id="encoding" name="encoding" >
+                                </select>
+                            </div>-->
+                        </td>
+                        <td>
+                            <button name="salvaUTF" data-dojo-type="dijit/form/Button" type="button"
+                                    data-dojo-props=""
+                                    id="salvaUTF"
+                                    onclick="salvaUTF()"
+                                    disabled="true">
+                                Salva in UTF-8
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+                
+
+            </div>
+
+      
+
+            <div id="divMostraReport" class="panel" style="display:none; margin-top: 10px">
+                <table>
+                    <tr>
+                        <td>
+                            <button name="nascondiReport" data-dojo-type="dijit/form/Button" type="button"
+                                    data-dojo-props="iconClass:'dijitIcon dijitIconPrint'"
+                                    id="nascondiReport"
+                                    onclick="nascondiReport()">
+                                Chiudi
+                            </button>
+                            
+                        </td>
+                        <td>
+                            <button name="mostraPdfReport" data-dojo-type="dijit/form/Button" type="button"
+                                    data-dojo-props="iconClass:'HI'"
+                                    id="mostraPdfReport"
+                                    onclick="mostraPdfReport()">
+                                PDF
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <div id="log" ></div>
+            </div>
+
+
+
+            <div id="divMostraLog" style="display:<?php $this->mostraLog?>">
+                
+                    <div>
+                            <?php
+                        echo $this->log;
+                    ?>
+                    </div>
+               
+            </div>
+        
+
+        <!-- finestra di conferma, che invia la cancellazione via ajax-->
+        <div data-dojo-type="dijit/Dialog" id="confirmDialog" 
+             closable="false" data-dojo-id="confirmDialog" title="Cancellazione totale testi"
+             style="display:none">
+            <div class="dijitDialogPaneContentArea">
+                <img src="<?php echo $this->baseUrl() ?>/img/warning.png" alt="attenzione!" align="middle"/>
+                <label for='login'>Saranno eliminati definitivamente tutti i testi archiviati; confermare?</label>
+            </div>
+
+            <div class="dijitDialogPaneActionBar">
+                <button data-dojo-type="dijit/form/Button" type="button" onclick="eliminaTuttoOk()">OK</button>
+                <button data-dojo-type="dijit/form/Button" type="button" onclick="confirmDialog.hide()">Annulla</button>
+            </div>
+        </div>
+
+
+        
+    </div>
+</div>
+

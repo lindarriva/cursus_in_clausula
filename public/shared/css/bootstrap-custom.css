@@ -1,0 +1,150 @@
+/* Riportiamo i breakpoint di BootStrap:
+Primo breakpoint: Schermi fino a 767px
+Secondo breakpoint: Schermi larghi da 768px in su
+Terzo breakpoint: Schermi larghi da 992px in su
+Quarto brekpoint: Schermi larghi da 1200px in su
+
+Il breakpoint per il collasso del menù è 768: se il menù ha molte voci,
+tuttavia, questa misura rischia di essere troppo piccola, per cui la porto
+di solito a 1024, con una sequenza di stili che colloco in layout.php
+
+*/
+
+/* ADATTAMENTE PERSONALI A BOOTSTRAP*/
+
+    .navbar-nav {
+    	background-color:#ffffff;
+    }
+@media screen and (min-width: 768px) {    
+	.container-fluid {
+		padding-left:0;
+		padding-right:0
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1000px) {  
+	/* inserisce un bordo inferiore al menù in queste misure, mentre nelle misure inferiori già c'è */  
+    .navbar-nav {
+    	border-bottom:solid 1px #dedede
+    }
+}
+/* assegna una leggera trasparenza all'header fixed; ma solo se non c'è il menù collapsed,
+altrimenti interferisce con la sua visualizzazione */
+@media screen and (min-width: 1000px) {
+    .navbar-fixed-top {
+        opacity:0.9;
+    }
+	.navbar-collapse {
+    	/* menù a destra */
+    	float: right;
+	}
+}
+
+/* In questo modo il container occupa sempre l'intero schermo se questo ha larghezza inferiore a 1170px
+(nell'impostazione di base mantiene dei margini)
+*/
+div.container {
+    width: auto;
+    background-color: #ffffff;
+    padding:0;
+
+}
+@media screen and (min-width: 1170px) {
+    div.container {
+        width: 1170px
+    }
+}
+
+/* combo: piccoli ritocchi */
+.form-control {
+    font-family: "open sans";
+    font-size:12.5px !important;
+    padding-left: 5px !important;
+    height: 32px;
+}
+
+label {
+    font-weight: normal;
+    margin-bottom: 0;
+    /*font-family: "open sans";*/
+    /*font-size:12.5px !important;*/
+}
+
+
+/* menù */
+.navbar-default {
+    background-color: #ffffff;
+}
+ul.dropdown-menu a, a.normal-toggle, a.selected-toggle{
+    font-family: "open sans";
+}
+
+ul.dropdown-menu a, a.normal-toggle{
+    /*color:#444444 !important*/
+}
+ul.dropdown-menu a{
+    font-size:13px !important
+}
+.selected-toggle, .selected-toggle:hover{
+    color:#ffffff !important;
+    background-color: #9e9ea5 !important;
+}
+
+
+/* griglia */
+/* per eliminare il gutter (spazio di 30px tra le colonne */
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+/* pulsanti */
+/* personalizza il pulsante 'primary' (non il 'default', perché stranamente non funziona) */
+.btn-primary {
+	/* grigio chiaro con scritte blu */
+    background-color:#efefef !important;
+    color:#0b2baa !important;
+    border: 1px solid #dddddd
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .open > .dropdown-toggle.btn-primary {
+	/* grigio più scuro */
+    background: #dddddd !important;
+    border: 1px solid #dddddd
+}
+
+/* crea il tipo di pulsante 'reverse'*/
+.btn-reverse,ul.pagination li.active a {
+	/* sfondo a gradiente blu con scritte bianche */
+	background: #0089d2; /* Old browsers */
+	background: -moz-linear-gradient(top,  #0089d2 0%, #0057d4 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #0089d2 0%,#0057d4 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #0089d2 0%,#0057d4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0089d2', endColorstr='#0057d4',GradientType=0 ); /* IE6-9 */
+	color:#ffffff !important
+}
+.btn-reverse:hover {
+	/* sfondo blu compatto */
+    background: #0058dc;
+}
+
+
+
+/* pagination */
+ul.pagination{
+    margin:0;
+    margin-top: 5px;
+    padding: 0
+}
+ul.pagination a{
+    color:#0b2baa
+}
+
+.form-control option {
+    font-size: 15px;
+}
+

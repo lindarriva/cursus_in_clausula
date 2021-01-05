@@ -1,0 +1,134 @@
+/* stili generali per un sito con responsive design */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+.flex {
+    max-width:100% !important;
+}
+
+/* impone 'un a capo' per schermi fino a 400 px;
+<div class="forSmart"></div> */
+.forSmart {
+	float:left;
+}
+div.forTablet {
+	float:left;
+}
+@media screen and (max-width: 500px) {
+    .forSmart{
+        clear:both
+    }
+}
+/* impone 'un a capo' per schermi fino tra 760 e 1024 px;
+<div class="forTablet"></div> */
+@media screen and (max-width: 800px) {
+    div.forTablet {
+        clear:both;
+    }
+}
+
+
+
+/* titolo pagine */
+#titoloPagina, div.titoloPagina {
+    padding-left:40px;
+    padding-top: 0.8%;
+    padding-bottom: 1%;
+    font-size:25px;
+    font-family: "open sans";
+    font-weight: 300;
+    color:#2f22bc;
+    text-align:left;
+}
+
+/* pulsanti alfabeto */
+a:link.alfabeto, a:visited.alfabeto {
+    color:#d63333;
+    text-decoration: none;
+    font-family: "open sans";
+    font-weight: 300;
+    font-size:20px;
+}
+@media screen and (min-width: 1170px) {
+    a:link.alfabeto, a:visited.alfabeto {
+        font-size:28px;
+    }
+}
+
+
+
+/* footer */
+div#footer {
+    clear: both;
+    background-color:#333333;
+    color:#999995;
+    padding:3%;
+    font-size:13px;
+}
+div.footerUno, div.footerDue{
+    padding: 0;
+    padding-right:10px;
+    padding-left:20px;
+}
+div.footerUno p, div.footerDue p{
+    margin: 0;
+    padding-bottom: 20px
+}
+
+div.footerMenu {
+    padding-left:20px;
+    padding-right:20px;
+}
+div.footerMenu div {
+    padding: 4px;
+    border-bottom:1px solid #777777
+}
+
+p.footerTitolo {
+   padding: 0;
+   padding-bottom: 7px;
+   margin: 0;
+   border-bottom: 0 solid #ffffff !important;
+   color: #ffffff;
+   font-size: 24px !important;
+   font-family:'Open sans' !important;
+   font-weight: 300 !important
+}
+div.footer a:link, div.footer a:visited, div.footerMenu div{
+    color:#999995;
+    text-decoration: none;
+    cursor:pointer
+}
+div.footer a:hover, div.footerMenu div:hover{
+    color:#ffffff;
+}
+@media screen and (min-width: 1170px) {
+    div.footer {
+        width:18%;
+        float:left;
+    }
+    div.footerUno {
+        width:10%;
+    }
+    div.footerDue {
+        width:20%;
+    }
+}
+@media screen and (min-width: 760px) {
+	#titoloPagina, div.titoloPagina {
+    	font-size:40px;
+    	line-height: 50px;    	
+	}
+
+    div.footerMenu {
+        float:left;
+    }
+}
+
+/* si usa per ottenere lo scroll orizzontale di una tabella di larghe dimensioni,
+un grafico ecc. */
+#container_hscroll, .container_hscroll{
+	overflow-x: auto
+}
+
+
+

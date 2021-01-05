@@ -1,0 +1,66 @@
+/* modello standard della griglia di ricerca con head blu */
+
+
+.panel-key h4{
+    color:#fff;
+    font-size:22px !important;
+    font-weight:300
+}
+
+.panel-static h4{
+	/* pannello sempre aperto, come panel-key, ma con font-size normale */
+    color:#fff;	
+}
+
+
+
+.panel-title, .button-grid {
+    font-family:'open sans';
+    font-size:14px !important;
+
+}
+.collapsed, .in{
+    font-weight: 500 !important;
+    font-size
+}
+
+.panel-closed{
+    background-image: url(img/apri.png);
+    background-repeat:no-repeat;
+    background-position:15px 12px;
+}
+.panel-opened{
+    background-image: url(img/chiudiBianco.png);
+    background-repeat:no-repeat;
+    background-position:15px 14px;
+    color:#fff !important
+}
+.panel-opened a:focus, .panel-closed a:focus{
+    text-decoration:none
+}
+.panel-opened a{
+    color:#fff !important
+}
+.panel-closed a{
+    font-weight:500;
+    color:#000
+}
+
+.panel-heading {
+    padding-top:9px;
+    padding-bottom:9px;
+    /*padding-left:35px !important;*/
+}
+.panel-key {
+	padding-left:20px !important
+}
+.panel-opened, .panel-key, .panel-static{
+    background-color: #006de9 !important;
+}
+.panel-closed{
+    background-color: #f5f5f5 !important
+}
+
+.button-grid {
+	font-size:16px !important;
+}

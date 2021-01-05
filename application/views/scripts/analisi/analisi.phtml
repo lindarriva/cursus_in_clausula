@@ -1,0 +1,923 @@
+
+<script type="text/javascript"> //script dei vari HELP
+    var myCursus;
+    var myRitmica;
+    var myOrlandi;
+    var myInfo;
+    var myClausole;
+    var chiTabella;
+
+    require(["dojo/parser",
+        "dijit/layout/BorderContainer",
+        "dijit/layout/ContentPane",
+        "dijit/layout/TabContainer"
+    ]);
+
+    require(["dojo/ready", "dijit/TooltipDialog", "dijit/form/DropDownButton"], function(ready, TooltipDialog, DropDownButton){
+    ready(function(){
+        var myDialog = new TooltipDialog({
+            content:
+            '<div align="justify" style="width:400px"><p>La tabella \"informazioni generali\" rende conto di quante parole sono state risolte dalla'
+            +' consultazione del vocabolario, e quante invece sono state scandite grazie al sistema procedurale.</p>'
+            +'<p> Le parole non rinvenute nel vocabolario sono risolte in maniera procedurale facendo riferimento, ove possibile, alle leggi dell\'accento'
+            +' latino e alle regole sulla quantità. </p> </div>'
+            + '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+        myInfo = new DropDownButton({ 
+            label: "?",
+            dropDown: myDialog
+        });
+
+        var myDialog = new TooltipDialog({
+            content:
+            '<div align="justify" style="width:400px"><p>Le clausole qui presentate considerano sempre almeno 6 sillabe anche se poi' 
+            +' la sequenza significativa dovesse tenere conto solo di 4 sillabe, come nei casi dei ritmi dispondaici (sarà riportato' 
+            +' ABNEGET PROPTER IPSUM, 3pp 2 2 anziché il minimo PROPTER IPSUM, 2 2 contato nelle statistiche).</p><p>NB: sono escluse'
+            +' a priori clausole formate solo da un bisillabo più un'
+            +' monosillabo, come per esempio: \"quid plura?\".</p><p>L\'elenco delle clausole è proposto di default secondo l’ordine'
+            +' di apparizione; cliccando nei titoli è possibile ordinare le clausole in ordine crescente o decrescente rispetto alla'
+            +' tipologia metrica o ritmica. </p><p><b>SIMBOLOGIA</b></p>'
+            +'<p>Metrica. Ogni simbolo corrisponde alla quantità di una sillaba:<br/> <b>-</b> indica quantità breve, <b>+</b> la quantità lunga.</p>'
+            +'<p>Ritmica.<ul style="list-style:none"><li><b>1</b> indica un monosillabo</li><li><b>2</b> indica un bisillabo</li><li><b>p</b>'
+            +' indica parola parossitona</li><li><b>pp</b> indica parola proparossitona.</li><li>la cifra anteposta a <b>p</b> o <b>pp</b> indica il numero di sillabe della parola. </li></ul></p></div>'
+            + '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+        myClausole = new DropDownButton({ //richiamalo nella funzione Ajax oppure qui sotto
+            label: "?",
+            dropDown: myDialog
+        });
+
+       var myDialog = new TooltipDialog({
+            content:
+            '<div align="justify" style="width:600px"><p>Il simbolo <b>x</b> identifica la sillaba accentata, <b>o</b> la sillaba atona. '
+            +'Le sequenze ritmiche osservate nella tabella ritmica, sono state assimilate secondo siffatta convenzione che non tiene conto della '
+            +'divisione delle parole, ma della quantità di sillabe atone che separano gli ultimi due accenti della clausola.<br/> Per il calcolo dei '
+            +'valori attesi e del χ2 abbiamo usato i valori calcolati nella tabella ritmo.  </p>'
+            +'<p><b>Legenda</b><ul style="list-style:none">'
+            +'<li><b>o</b>= numero di occorrenze della clausola</li>'
+            +'<li><b>e</b>= valori attesi </li>'
+            +'<li><b>chi</b>= indice di Pearson </li>'
+            +'<li><b>perc.</b>= percentuale dell’occorrenza della clausola (o/totale clausole) </li></ul></p>'
+            +'<p>Nella voce <b>altre</b>, rientrano tutte le clausole con un valore atteso inferiore a 5.<br/>'
+            +'La tabella è presentata di default secondo l\'ordinamento decrescente di occorenze osservate; è possibile'
+            +' cliccando nell\'apposito titolo, variare il criterio della disposizione in base al tipo di clausola.</p></div>'
+            + '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+        myCursus = new DropDownButton({ 
+            label: "?",
+            dropDown: myDialog
+        });
+
+        var myDialog = new TooltipDialog({
+            content:
+            '<div align="justify" style="width:600px"><p>Per il calcolo della clausole ritmiche secondo il metodo Janson, è necessario ridurre la '
+        +'sequenza a due soli elementi: del primo elemento importa solo il tipo (proparossitono o parossitono), del secondo interessa '
+        +'sapere anche il numero di sillabe. <br/>Per il trattamento dei monosillabi, sempre considerati atoni, sono state operate delle scelte'
+        +' rigide di accorpamento ora al primo ora al secondo elemento della clausola.<br/>Qui di seguito le istruzioni impartite '
+        +'al programma (* rappresenta l\'elemento generico):<ul style="list-style:none"> '
+        +'<li> il monosillabo in ultima posizione diventa sempre enclitico:</li>'
+        +'<li>    * 2 1 = * 3<b>pp</b></li>'
+        +'<li>    * <i>n</i><b>p</b> 1 = * <i>n+1</i><b>pp</b></li>'
+        +'<li>    * <i>n</i><b>pp</b> 1 = * <i>n+1</i><b>pp</b></li></li>'
+        +'<li> bisillabi e trisillabi in ultima posizione preceduti da monosillabo, rendono il monosillabo proclitico </li>'
+        +'<li>    * 1 2 = * 3<b>p</b></li>'
+        +'<li>    * 1 3<b>p</b> = * 4<b>p</b></li>'
+        +'<li>    * 1 3<b>pp</b> = * 4<b>pp</b></li>'
+        +'<li> altri casi:</li>'
+        +'<li>    2 2 2 = p 2<b>p</b> </li></ul></p>'
+        +'<p><b>Legenda</b><ul style="list-style:none">'
+        +'<li><b>o</b>= numero di occorrenze della clausola</li>'
+        +'<li><b>e</b>= valore atteso della clausola calcolato applicando questo metodo: (occorrenze del'
+        +' primo elemento) * (occorrenze del secondo elemento)/numero totale di clausole considerate. </li>'
+        +'<li><b>chi</b>= indice di Pearson calcolato secondo la formula: χ2 = (o-e)2/e. </li>'
+        +'<li><b>perc.</b>= percentuale dell’occorrenza della clausola (o/totale clausole) </li></ul></p>'
+        +'<p>Nella voce <b>altre</b>, rientrano tutte le clausole con un valore atteso inferiore a 5.<br/>'
+        +'La tabella è presentata di default secondo l\'ordinamento decrescente di occorenze osservate; è possibile'
+        +' cliccando nell\'apposito titolo, variare il criterio della disposizione in base al tipo di clausola.</p></div>'
+            + '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+        myRitmica = new DropDownButton({
+            label: "?",
+            dropDown: myDialog
+        });
+
+        var myDialog = new TooltipDialog({
+            content:
+            '<div align="justify" style="width:600px"><p>'
+        +'Secondo il metodo affinato da Giovanni Orlandi, le clausole metriche sono divise in due elementi dalla cesura: i tipi del primo elemento sono classificati secondo la quantità'
+        +' delle sillabe dalla prima sillaba accentata in poi, quelli del secondo in base alla quantità di tutte le sue sillabe. <br/> '
+        +'L’ultima sillaba di clausola vale sempre come elementum indifferens (*), il segno <b>+</b> equivale ad un sillaba lunga, '
+        +'il segno <b>-</b> indica la quantità breve. <br/> Di default il programma considera gli incontri tra vocali come '
+        +'casi di sinalefe, trasformando in un unico elemento quello che in ritmica era suddiviso in due; quando il focus dell’indagine è l’analisi prosodica, è  consigliabile'
+        +' attivare l’opzione che considera tutti gli incontri tra vocali come iato, cliccando sulla linguetta testi e scegliendo l\'opzione apposita.'
+        +'<p><b>Legenda</b><ul style="list-style:none">'
+        +'<li><b>o</b>= numero di occorrenze della clausola</li>'
+        +'<li><b>e</b>= valore atteso della clausola calcolato applicando questo metodo: (occorrenze del'
+        +' primo elemento) * (occorrenze del secondo elemento)/numero totale di clausole considerate. </li>'
+        +'<li><b>chi</b>= indice di Pearson calcolato secondo la formula: χ2 = (o-e)2/e. </li>'
+        +'<li><b>perc.</b>= percentuale dell’occorrenza della clausola (o/totale clausole) </li></ul></p>'
+        +'<p>Nella voce <b>altre</b>, rientrano tutte le clausole con un valore atteso inferiore a 5.<br/>'
+        +'La tabella è presentata di default secondo l\'ordinamento decrescente di occorenze osservate; è possibile'
+        +' cliccando nell\'apposito titolo, variare il criterio della disposizione in base al tipo di clausola.</p></div>'
+            + '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+        myOrlandi = new DropDownButton({
+            label: "?",
+            dropDown: myDialog
+        });
+
+        var myDialog = new TooltipDialog({
+            content:
+            '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        +   '<div style="width:600px"><p><b>Tabella di distribuzione di χ<sup>2</sup></b></p>'
+        + '<p>Per <i>n</i> gradi di libertà (il numero di tipi di clausola presi in considerazione meno uno), esistono i valori critici corrispondenti a diverse probabilità (P);'
+        +'i valori critici <i>standard</i> che discriminano il casuale dal non casuale sono quelli corrispondenti ad una probabilità di 0,05 ossia del 5% (Janson, p.21)</p>'
+        +'<p><img src="<?php echo $this->baseUrl() ?>/img/chi_quadro.png" align="middle"/></p>'
+        +'<p>Si ricorda che il test del χ<sup>2</sup> è valido <b>solamente</b> quando applicato a grandi campioni (il totale delle occorrenze osservate dovrebbe essere superiore a 100).<br/>'
+        +'Qui di seguito i <i>tre limiti d\'impiego del test χ<sup>2</sup></i> tradotti da C. Muller, <i>Initiation à la statistique linguistique</i>, 1968, pp.99:<ol>'
+        +'<li>il test del χ2 non si applica che a dei valori assoluti: mai a dei valori relativi (come le percentuali)e mai a delle dimensioni (elementi quantitativi)</li>'
+        +'<li><b>perde la sua precisione quando gli scarti sono stabiliti in rapporto a valori teorici troppo bassi</b>; nella pratica ci si vieterà di scrivere'
+        +' nei valori teorici dei numeri inferiori a 5, e si eviteranno - se possibile - i numeri inferiori a 10; per i valori reali, non ci sono limitazioni</li>'
+        +'<li>tutti gli errori sui numeri dei gradi di libertà falsano i risultati</li></ol> </p></div>'
+        + '<div align="right"><button data-dojo-type="dijit/form/Button" type="submit" showLabel="true">x</button></div>'
+        });
+        chiTabella = new DropDownButton({
+            label: "χ<sup>2</sup>",
+            dropDown: myDialog
+        });
+        document.getElementById("chi_tab").appendChild(chiTabella.domNode);
+
+
+    });
+    });
+</script>
+
+<script type="text/javascript"> //script delle varie funzioni/chiamate ajax
+    function abilitaPulsanti(){
+       
+       document.getElementById("divClausole").style.display = "none";
+       document.getElementById("divAnalisi").style.display = "none";
+       cambiaImpostazioni();
+       mostraTitolo();
+       apriTesto();
+       mostraDati();
+        var obj=dijit.registry.byId('analisiStatistiche');
+            obj.setAttribute('disabled', false);
+            obj=dijit.registry.byId('confronto');
+            obj.setAttribute('disabled', true);
+            obj=dijit.registry.byId('analisiClausole');
+            obj.setAttribute('disabled', false);
+
+            
+    }
+
+   function cambiaImpostazioni(){
+       var monosillabi = !dijit.registry.byId("escludiMonosillabi").checked;//1 default 0 escludi
+       var sinalefe = !dijit.registry.byId("escludiSinalefe").checked;
+       var azione = "cambiaImpostazioni";
+//       var x = document.getElementsByName("EVItesti");
+//       var idTesti = document.getElementById("EVItesti").value;
+       var idTesti = getSelectedId("testi");
+//       if (x.length==0){
+//           return;
+//       }
+//       var id=x[0].id;
+       dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/testi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: idTesti,
+                monosillabi: monosillabi,
+                sinalefe: sinalefe
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                //alert (response);
+
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+   }
+
+    function mostraTitolo(){
+      
+        var azione = "mostraTitolo";
+//        var x = document.getElementsByName("EVItesti");
+//        var idTesti = document.getElementById("EVItesti").value;
+        var idTesti = getSelectedId("testi");
+//        var id=x[0].id;
+        
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: idTesti
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                var obj=dijit.registry.byId('divMostraTitolo');
+                    obj.setTitle(response);
+                //document.getElementById("divMostraTitolo").innerHTML = response;
+
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function mostraDati(){
+        var azione = "mostraDati";
+//        var x = document.getElementsByName("EVItesti");
+//        var idTesti = document.getElementById("EVItesti").value;
+        var idTesti = getSelectedId("testi");
+//        var id=x[0].id;
+
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+            // passaggio dei parametri POST
+                content: {azione: azione,
+                idTesti: idTesti
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                document.getElementById("divDati").innerHTML = response;
+                document.getElementById("help_info").appendChild(myInfo.domNode);
+
+
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+
+    }
+
+    function apriTesto(){
+
+        var azione = "apriTesto";
+
+//        var idTesti = document.getElementById("EVItesti").value;
+        var idTesti = getSelectedId("testi");
+
+        dojo.xhrPost( {
+            url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                idTesti: idTesti
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+
+                if(sessioneScaduta(response)) return;
+                document.getElementById("divApriTesto").innerHTML = response;
+
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    
+     function confronto(){
+        
+
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+        var azione='confronto';
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                    idTesti: id
+                    },
+                // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                document.getElementById("divAnalisi").style.display = "none";
+                document.getElementById("divClausole").style.display = "block";
+                 document.getElementById("divClausole").innerHTML=response;
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+
+    function analisiStatistiche(){
+
+waitOn();
+           
+
+        
+       analisiOrlandi("2D");
+       analisiRitmo("2D");
+       analisiCursus("2D");
+
+       
+    
+    document.getElementById("divClausole").style.display = "none";
+    document.getElementById("divAnalisi").style.display = "block";
+
+    
+    }
+    
+    function HIindex_analisiClausole(ordine){
+        analisiClausole(ordine);
+    }
+
+    function analisiClausole(ordine){
+        waitOn();
+        var azione="analisiClausole";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                    idTesti: id,
+                    ordine: ordine
+                    },
+                // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                document.getElementById("divAnalisi").style.display = "none";
+                 document.getElementById("divClausole").style.display = "block";
+                 document.getElementById("divClausole").innerHTML=response;
+                  document.getElementById("help_clausole").appendChild(myClausole.domNode);
+            waitOff();
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+        
+    }
+
+    function HIPDF_analisiClausole(ordine){
+//       var id = document.getElementById("EVItesti").value;
+       var id = getSelectedId("testi");
+        location.href="<?php echo $this->baseUrl() ?>/analisi/pdf/tabella/analisiClausole/idTesti/"+id+"/ordine/"+ordine;
+    }
+
+    function HIindex_analisiRitmo(ordine){
+        analisiRitmo(ordine);
+    }
+        
+    function analisiRitmo(ordine){
+        var azione="analisiRitmo";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                    idTesti: id,
+                    ordine: ordine
+                    },
+                // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                 document.getElementById("divTabRitmo").innerHTML=response;
+                 document.getElementById("help_ritmo").appendChild(myRitmica.domNode);
+                 waitOff();
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+        }
+
+    function HIPDF_analisiRitmo(ordine){
+//       var id = document.getElementById("EVItesti").value;
+       var id = getSelectedId("testi");
+        location.href="<?php echo $this->baseUrl() ?>/analisi/pdf/tabella/analisiRitmo/idTesti/"+id+"/ordine/"+ordine;
+    }
+
+    function HIPDF_analisiRitmoAltre(ordine){
+//       var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+        location.href="<?php echo $this->baseUrl() ?>/analisi/pdf/tabella/analisiRitmoAltre/idTesti/"+id+"/ordine/"+ordine;
+    }
+
+
+    function HIindex_analisiCursus(ordine){
+        analisiCursus(ordine);
+    }
+
+
+    function analisiCursus(ordine){
+        var azione="analisiCursus";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                    idTesti: id,
+                    ordine: ordine
+                    },
+                // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                 document.getElementById("divTabCursus").innerHTML=response;
+                 document.getElementById("help_cursus").appendChild(myCursus.domNode);
+                 waitOff();
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+    function HIPDF_analisiCursus(ordine){
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+        location.href="<?php echo $this->baseUrl() ?>/analisi/pdf/tabella/analisiCursus/idTesti/"+id+"/ordine/"+ordine;
+    }
+
+
+    function HIPDF_analisiCursusAltre(ordine){
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+        location.href="<?php echo $this->baseUrl() ?>/analisi/pdf/tabella/analisiCursusAltre/idTesti/"+id+"/ordine/"+ordine;
+    }
+
+
+    function HIindex_analisiOrlandi(ordine){
+        analisiOrlandi(ordine);
+    }
+
+    function HIindex_analisiOrlandiAltre(ordine){
+        mostraNascostiOrlandi(ordine);
+    }
+
+    function HIPDF_analisiOrlandi(ordine){
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+        location.href="<?php echo $this->baseUrl() ?>/analisi/pdf/tabella/analisiOrlandi/idTesti/"+id+"/ordine/"+ordine;
+    }
+
+    function HIPDF_analisiOrlandiAltre(ordine){
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+        location.href="<?php echo $this->baseUrl() ?>/analisi/pdf/tabella/analisiOrlandiAltre/idTesti/"+id+"/ordine"+ordine;
+    }
+
+
+    function analisiOrlandi(ordine){
+        var azione="analisiOrlandi";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                    idTesti: id,
+                    ordine: ordine
+                    },
+                // funzione eseguita in risposta
+            load: function(response) {
+                 if(sessioneScaduta(response)) return;
+                 document.getElementById("divTabMetroO").innerHTML=response;
+                 document.getElementById("help_orlandi").appendChild(myOrlandi.domNode);
+                 waitOff();
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+        
+}
+
+        
+    function mostraNascostiOrlandi(ordine){
+        //alert (tabella);
+        var azione="mostraNascostiOrlandi";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                     idTesti: id,
+                     ordine: ordine
+                    },
+        load: function (response) {
+        if(sessioneScaduta(response)) return;
+        document.getElementById("divTabMetroO").innerHTML=response;
+       },
+    error: function(error){
+                alert("ok=" + error);
+            }
+        });
+
+
+    }
+
+    function mostraNascostiRit(ordine){
+
+        var azione="mostraNascostiRit";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                     idTesti: id,
+                     ordine: ordine
+                    },
+        load: function (response) {
+        if(sessioneScaduta(response)) return;
+        document.getElementById("divTabRitmo").innerHTML=response;
+        },
+    error: function(error){
+                alert("ok=" + error);
+            }
+        });
+   }
+
+    function mostraNascostiCur(ordine){
+
+        var azione="mostraNascostiCur";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                     idTesti: id,
+                     ordine:ordine
+                    },
+        load: function (response) {
+        if(sessioneScaduta(response)) return;
+        document.getElementById("divTabCursus").innerHTML=response;
+        },
+    error: function(error){
+                alert("ok=" + error);
+            }
+        });
+
+
+    }
+
+    function mostraMono(ordine){
+        mostrareMonosillabi('0A');
+    }
+    
+    function mostrareMonosillabi(ordine){
+        
+        var azione="mostraMonosillabi";
+//       var id = document.getElementById("EVItesti").value;
+       var id = getSelectedId("testi");
+        
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                     idTesti: id,
+                     ordine: ordine
+                     },
+
+        load: function (response) {
+        if(sessioneScaduta(response)) return;
+        document.getElementById("divMostraMonosillabi").innerHTML=response;
+        mostraMonosillabi.show();
+
+    },
+    error: function(error){
+                alert("ok=" + error);
+            }
+        });
+   }
+
+    function mostraClausoleOrlandi(){
+        var id = getSelectedId("analisiOrlandi");
+
+        mostrareClausole(id, 'quant_calcoli');
+    }
+
+    function mostraClausoleRitmo(){
+        var id = getSelectedId("analisiRitmo")
+
+        mostrareClausole(id, 'rit_standard')
+    }
+
+    function mostraClausoleCursus(){
+        var id = getSelectedId("analisiCursus")
+        mostrareClausole(id, 'cursus')
+    }
+
+    function mostrareClausole(pattern, campo){
+        if(pattern==-1){
+              alert ("clicca il pulsante altre");
+              return;
+         } else {
+            
+            waitOn();
+        }
+
+
+
+        var azione="mostraClausole";
+//        var id = document.getElementById("EVItesti").value;
+        var id = getSelectedId("testi");
+
+        dojo.xhrPost({
+           url: '<?php echo $this->baseUrl() ?>/analisi/ajax',
+                // passaggio dei parametri POST
+           content: {azione: azione,
+                     idTesti: id,
+                     schema: pattern,
+                     campo: campo
+                    },
+        
+        load: function (response) {
+            
+        if(sessioneScaduta(response)) return;
+        document.getElementById("divMostraClausole").innerHTML=response;
+        mostraClausole.show();
+        waitOff();
+    },
+    error: function(error){
+                alert("ok=" + error);
+            }
+        });
+    }
+
+
+
+
+
+    
+
+  </script>
+
+
+<style>
+input#uploader {
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+#message {
+    color:#d46464;
+    font-weight: bold;
+}
+
+#divApriTesto{
+    height: 200px;
+    overflow: auto;
+    text-align: justify;
+    padding : 10px;
+    padding-right : 20px;
+}
+
+</style>
+
+    <div class="mainDiv" align="left" >
+        <?php
+        require "Menu.php";
+        $menu = new Menu("analisi", $this->baseUrl());
+        ?>
+        <div style="padding:20px;">
+    
+    
+    <div data-dojo-type="dijit/layout/TabContainer"  doLayout="false">
+         
+        
+   
+         
+        <div data-dojo-type="dijit/layout/ContentPane"
+             title="testi"
+             class="panel"
+             align="left"
+             id="tabellaTesti"
+             style="margin:20px; margin-top: 8px;padding:10px">
+
+
+            <div data-dojo-type="dijit/layout/ContentPane"
+                 class="panel"
+                 id="didascalia"
+                 align="justify"
+                 style=" border:none; margin:0px;margin-top: 0px;padding:0px">
+                <p>Il programma d’analisi di default considera tutti i monosillabi in fine clausola come elementi enclitici: <br/><b>apud te</b> corrisponderà a <b>-++</b>, ovvero in notazione ritmica a <b>3pp</b>;<br/>
+                   Così anche due monosillabi finali saranno considerati come un bisillabo finale: <b>pro te</b> sarà assimilato a <b>++</b>, <b>2p</b>;
+                    i monosillabi non finali di clausola invece saranno sempre considerati dal programma come proclitici:<br/> <b>dicens ad eos, ++|--+,  p 3p</b></p>
+                <p>Secondo i criteri fonosintattici della clausola, considerata alla stregua di un verso, come un’unica catena sillabica, il programma di default realizza la sinalefe in tutti gli incontri vocale finale-vocale iniziale; 
+                    cliccando il pulsante "opzioni" esiste la possibilità di forzare il programma a considerare tutti i casi di sinalefe come iato. Quando il focus dell’indagine è l’<b>analisi prosodica</b>, è  consigliabile <b>attivare</b> l’opzione
+                    che considera tutti gli incontri tra vocali come iato: infatti nel caso si considerasse la sinalefe, secondo la metodologia "orlandi", alcune clausole potrebbero non venire scandite
+                    poiché il programma non trova il punto di divisione tra un primo e un secondo elemento (es. consuetudinem antiquam, sibi ignominiusum, gloriam angelorum…)</p>
+                <p>Selezionare il testo su cui si intende studiare il cursus dall'elenco qui sotto, quindi cliccare sulla linguetta 'analizza'.</p>
+             </div>
+
+
+
+            <div  class="panel" style="padding:10px;margin-top: 10px;background-color: #ccccff">
+            <div  id="divOpzioni" data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'opzioni'">
+                    <div id="divApriOpzioni"
+                         data-dojo-type="dijit/layout/ContentPane"
+                         class="panel"
+                         id="opzioni"
+                         align="justify"
+                         style=" border:none; margin:0px;margin-top: 0px;padding:0px">
+                    <div> <input id="escludiMonosillabi" name="escludiMonosillabi"
+                           type="checkbox"
+                           data-dojo-type="dijit/form/CheckBox"
+                           onclick="cambiaImpostazioni()"
+                           value="0" />
+                           <label for="escludiMonosillabi">!!!IN PROGRESS!!!</label></div>
+                    <div> <input id="escludiSinalefe" name="escludiSinalefe"
+                           type="checkbox"
+                           data-dojo-type="dijit/form/CheckBox"
+                           onclick="cambiaImpostazioni()"
+                           value="0" />
+                           <label for="escludiSinalefe">Considera tutti gli incontri tra vocali come iato</label></div>
+                    </div>
+                </div>
+        </div>
+
+
+
+
+
+            <?php
+                $this->grid->render();
+            ?>
+            <p id="message">
+                <?php
+                    echo $this->messaggio;
+                ?>
+            </p>
+        </div>
+
+
+        <div data-dojo-type="dijit/layout/ContentPane"
+             title="analizza"
+             class="panel"
+             align="left"
+             style="margin:10px;margin-top: 10px;padding:0px">
+
+            <div class="panel" style="margin-bottom: 20px;background-color: #f4f4f4">
+                <!--div  id="divMostraTitolo" style="padding: 10px">
+                </div-->
+                <div  id="divMostraTitolo" data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: ''">
+                    <div id="divApriTesto"></div>
+                </div>
+                <div align="right">
+                    <!--<div id="help_1" class="help" ></div>-->
+                </div>
+                <div id="divDati">
+                 
+                </div>
+                 
+            </div>
+
+            <button name="analisiClausole" data-dojo-type="dijit/form/Button" type="button"
+                        id="analisiClausole"
+                        onclick="analisiClausole('0A')"
+                        disabled="disabled"
+                        showLabel="true">
+                    Clausole
+            </button>
+
+            <button name="analisiStatistiche" data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'dijitIcon dijitIconChart'" type="button"
+                        id="analisiStatistiche"
+                        onclick="analisiStatistiche()"
+                        disabled="disabled"
+                        showLabel="true">
+                    Analisi Statistiche
+            </button>
+                    
+            <button name="confronto" data-dojo-type="dijit/form/Button" type="button"
+                        id="confronto"
+                        onclick="confronto()"
+                        disabled="disabled"
+                        showLabel="true">
+                    Confronto
+            </button>
+            
+            
+
+            <div  class="panel" id="divAnalisi" style="padding:10px; margin-top: 10px; background-color: #ccccff; display: none" >
+
+                <div data-dojo-type="dijit/layout/ContentPane" class="panel" id="chi" align="right" style="background-color: #ccccff;border:none;margin:5px;margin-top: 5px;padding:5px">
+                    <div id="chi_tab" class="help"></div>
+                </div>
+
+
+             <table width="100%">
+
+                 <tr><td colspan="2"><div   data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'Clausole Metriche: Orlandi'">
+                            <!--<div id="help_1" class="help"></div>-->
+                             <div id="divTabMetroO"></div>
+                        </div>
+                        </td>
+                        </tr>
+
+
+                <!--<tr><td colspan="2"><div   data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'Clausole Metriche: Aili'">
+                            <div id="divTabMetroA"></div>
+                        </div>
+                        </td>
+                        </tr>-->
+
+                 <!-- <tr><td colspan="2"><div   data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'Confronto Clausole Metriche'">
+
+
+                             <tr><td style="width:50%; vertical-align: top">
+                            <div  id="divTabAili" data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'Orlandi'">
+                                <div id="divTabConfO"></div>
+                            </div>
+                        </td>
+                        <td style="width:50%; vertical-align: top">
+                            <div  id="divTabOrlandi" data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'Aili'">
+                                <div id="divTabConfA"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                        </div>
+                        </td>
+                        </tr>-->
+         
+                        <tr><td colspan="2"><div   data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'Clausole Ritmiche'">
+                            <div id="divTabRitmo"></div>
+                        </div>
+                        </td>
+                        </tr>
+
+                        <tr><td colspan="2">
+                            <div  id="divCursus" data-dojo-type="dijit/TitlePane" open="false" data-dojo-props="title: 'CURSUS'">
+                                <div id="divTabCursus"></div>
+                            </div>
+                        </td></tr>
+                    
+                </table>
+                
+            
+        </div>
+
+            <div  class="panel" id="divClausole" style="padding:10px;margin-top: 10px;background-color: #ccccff; display: none" >
+
+                
+
+
+            </div>
+        </div>
+    </div>
+
+
+        <div data-dojo-type="dijit/Dialog" id="mostraClausole"
+             closable="true" data-dojo-id="mostraClausole" title="Mostra Clausole"
+             style="display:none">
+            
+                <div id="divMostraClausole" style="width: 700px">
+                    <!--//inner.response-->
+                </div>
+        </div>
+
+    
+    
+    
+    
+    
+    
+    <div data-dojo-type="dijit/Dialog" id="mostraMonosillabi"
+             closable="true" data-dojo-id="mostraMonosillabi" title="Mostra Monosillabi"
+             style="display:none">
+
+                <div id="divMostraMonosillabi" style="width: 700px">
+                    //inner.response
+                </div>
+        </div>
+        </div>
+    </div>       
+
+
+

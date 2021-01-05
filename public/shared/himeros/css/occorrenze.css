@@ -1,0 +1,181 @@
+td.citazione, td.citazione_disattivata, td.grigio, td.bianco, 
+div.citazione, div.citazione_disattivata, div.grigio, div.bianco,
+p.head, div.head, td.lessico, div.lessico, p.box, select.lessico, select.queryIndex {
+    font-family:'Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif';
+    font-size: 13px;
+}
+
+
+div.corpo {  
+    padding-top:10px;
+    padding-bottom:10px
+}
+
+p.head, div.head{
+    background:-webkit-linear-gradient(#fff,#e1e1e1);
+    background:-moz-linear-gradient(#ffffff,#e1e1e1);
+    background:-o-linear-gradient(#ffffff,#e1e1e1);
+    background:-ms-linear-gradient(#ffffff,#e1e1e1);
+    background:linear-gradient(#ffffff,#fef efe);
+	background-color:#fff;
+    margin:0;
+    padding-top:4px;
+    padding-bottom:7px;
+    padding-left:20px;
+    padding-right:10px;
+    line-height:40px;
+    text-align:left
+}
+
+
+
+.occorrenze {
+    color:red;
+    font-weight:bold;
+}
+a:link.altra, A:visited.altra {
+    color:#0000a0;
+    font-size:12px;
+    font-weight:bold
+}
+.errore {
+    font-size:14px;
+    margin-top:10px;
+    margin-bottom:7px;
+    padding-left:4px;
+    color:red;
+    font-weight:bold;
+    background-color:#ddd;
+    padding-top:5px;
+    padding-bottom:5px
+}
+p.pag {
+    font-family:arial;
+    font-size:12px;
+    float:left;
+    width:30px;
+    text-align:center;
+    margin:0;padding:0;
+	padding-top: 5px;
+	padding-bottom: 5px    
+}
+p.paginaScelta {
+    color:#fb7d00;
+    background:green;
+    text-align:center;
+    font-weight:bold;
+}
+
+a:link.numeri, A:visited.numeri {
+    color:#0000a0;
+    font-weight:bold;
+    text-decoration:none
+}
+a:hover.numeri {
+    color:#cc0000;
+    text-decoration:underline
+}
+td.citazione, div.citazione {
+	font-size:12.5px;
+    background:#ebebaf;
+    padding-right:5px;
+    padding-left:5px;
+    padding-top:5px;
+    padding-bottom:5px;
+    /*border-bottom:1px solid #ffffff*/
+}
+
+div.citazione {
+	margin-bottom:1px
+}
+
+a:link.citazione, a:visited.citazione {    
+    color:#0000a0;
+    text-decoration:none;
+}
+a:hover.citazione {
+    color:#cc0000;
+    text-decoration:underline
+}
+a:focus.citazione {
+    color:#cc0000 !important;
+    text-decoration:none
+}
+td.citazione_disattivata, div.citazione_disattivata {
+    background:#ebebaf;
+    color:#808080;
+    padding-right:5px;
+    padding-left:5px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+td.grigio, td.bianco, div.grigio, div.bianco{
+    /*white-space: nowrap;*/
+    text-align:left;
+    font-size: 13.5px;
+    padding:5px;
+    padding-right:15px;
+}
+td.grigio, div.grigio {
+    background-color:#f2f2e6;
+}
+td.bianco, div.bianco {
+    background-color:white;
+}
+.evidenziato {
+    color:red
+}
+.p,.c_t {
+    font-weight:bold;
+    color:#990000;
+    font-variant:small-caps;
+}
+.m {
+    font-variant:small-caps
+}
+.titolo {font-weight:bold}
+.did {
+    font-style:italic
+}
+.disabilitato {
+    color:#808080
+}
+
+/* lessico */
+td.lessico, div.lessico, p.box {
+    font-size:12px; 
+}
+select.lessico {
+    font-size:12.5px;
+    margin:0; 
+    padding:0; 
+    color:#0000a0; 
+    background: #f9f9f9;
+}
+form.lessico {
+    margin:0px
+}
+
+select.queryIndex {
+    height:23px;
+    font-size: 12.5px
+}
+
+.contestoAperto, .contestoChiuso {
+    background-repeat: no-repeat;
+    background-position: 0 5px;    
+    width:10px;
+    cursor:pointer
+}
+.contestoAperto, .contestoChiuso {
+    background-image: url(img/chiudi.png);
+}
+.contestoChiuso{
+    background-image: url(img/apri.png);
+}
+
+span.eviRed {
+	color:#ff0000
+}
+
+

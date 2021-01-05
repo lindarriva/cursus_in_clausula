@@ -1,0 +1,41 @@
+/* Form Utente: per posizionare correttamente la label sopra i campi */
+#firstname-label, #lastname-label, #username-label, #password-label, #password1-label, #sigla-label, #ente-label  {
+	margin-top:20px;
+	margin-bottom: 5px;
+	text-align: left
+}
+
+#idusers, #idusers-label {
+	margin:0;
+	padding:0
+}
+
+#annulla-button {
+	margin-top: 35px
+}
+div.info {
+	padding: 20px;
+	background-color: #e7f0f6;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	color:#555555;
+	line-height: 20px
+
+}
+.textbox {
+	width:90% !important
+}
+div.panel {
+	padding:10px;
+	padding-top:0px;
+	padding-bottom:0px;
+	margin-top:25px;
+	margin-left: 20px;
+	margin-right: 20px;
+	background-color: #f8f8f8;
+}
+.labelPanel {
+	top:-10px !important
+}
+

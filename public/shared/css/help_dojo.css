@@ -1,0 +1,49 @@
+div.help_dojo {
+	font-family: 'Lucida grande',verdana,'sans serif';
+	font-size: 12px;
+	padding-bottom:5px;
+	padding-top:0px"		
+}
+
+div.help_dojo h3{
+	padding:0;
+	margin:0
+}
+label.help_dojo_nascondi {
+    position:absolute;
+    color:#ffffff;
+    background-image: none;
+    background-color: #ffffff;
+    padding-top:10px;
+    padding-left:10px;
+    opacity:0
+}
+p.help_dojo {
+    margin:0;
+    padding:0;
+    margin-top:5px !important;
+}
+.chiudiHelp_dojo {
+	font-size:1px;
+    position:absolute;
+    opacity:0
+}
+ul.help_dojo li, p.help_dojo {
+	font-family: 'Lucida grande',verdana,'sans serif';
+	font-size: 12px;
+}
+
+div.help_dojo_immagine{
+    margin:0;
+    padding:0;
+    padding-top: 10px;
+    padding-bottom: 5px
+}
+
+
+table.help_dojo {
+    border:1px solid #000000;border-collapse: collapse;
+}
+table.help_dojo td {
+    padding:4px;border:1px solid #000000
+}

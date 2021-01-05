@@ -1,0 +1,184 @@
+table.cometri {
+    margin-top: 10px;
+}
+table.cometri td {
+    line-height: 16px;
+    font-family: georgia;
+    padding-left: 5px;
+    font-size: 15px;
+     
+}    
+td.verso {
+    text-align: left   
+}
+td.numero{
+    text-align: center;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 3px;
+    color:#000099;
+    font-size: 16px;
+    background-color: #e3effb;
+    cursor: default;
+}
+td:hover.numero{
+    cursor: pointer;
+    background-color: #1859e7;
+    color:#ffffff;
+}
+td.nonattivo, td:hover.nonattivo{
+    width: 40px;
+    color:#999999;
+    background-color: #e3effb;
+    cursor: default;
+    
+}
+
+td.nometro{
+    color:#999999
+}
+
+td.vuoto, td:hover.vuoto{
+    background-color: #ffffff;
+    cursor: default;
+}
+td.didascalia{
+    font-weight: bold;    
+    font-size: 13px !important;
+    
+}  
+a:link.cometri,a:visited.cometri {
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color:inherit;
+}
+a:hover.cometri {
+    color:white;
+}
+
+
+
+td.bianco,td.grigio {
+    font-size: 16px;
+    font-family: "arial";    
+    height:25px;
+}
+
+td.super {
+    font-size: 16px !important;
+}
+.schema {
+    font-size: 12px;
+}
+
+.schemaParole{
+    font-size: 13px;
+    font-weight: bold;
+    font-style: italic
+}
+.arsi {
+    color:red;
+}
+.tesi {
+    color:blue
+}
+td.evi{
+    border-radius:0 0 0 0;
+    -khtml-border-radius:0 0 0 0;
+    -webkit-border-radius:0 0 0 0;       
+    -moz-border-radius:0 0 0 0;            
+    
+}
+table.chiave{
+    border: 1px #999999 solid;
+    background-color: #dedede;
+    margin: 5px;
+    padding: 5px;
+    border-radius:3px 3px 3px 3px;
+    -khtml-border-radius:3px 3px 3px 3px;
+    -webkit-border-radius:3px 3px 3px 3px;       
+    -moz-border-radius:3px 3px 3px 3px;            
+    
+}
+
+/* esito scansioni */
+td.versoFallito {
+    /* verso non scandito */
+    font-family:arial;
+    font-size:14px;
+    padding:5px;
+    background-color: #ddd;
+} 
+/* colonna sinistra verso risolto */
+td.risolto {
+    background-color:#fbd532
+}   
+/* colonna sinistra verso non risolto */
+td.eccezione {
+    background-color: #ddd;
+    font-size:12px;
+}   
+td.right {
+    width:140px;
+}
+.soluzione {
+    font-size:14px;
+}
+.avviso {
+    color:red;
+    font-weight: bold
+}            
+/* tooltip di diagnosi degli errori */
+td.diagnosi {
+    border:1px solid #999999;
+    padding:5px
+}
+img.simboloErrore {
+    cursor:default
+}
+div.tooltip {
+    width:220px
+}
+            
+p.grafie {
+    font-size:12px;
+    background-color:#f9eca1;
+    margin-top:0;
+    padding-top:3px;
+    padding-bottom:3px;
+    margin-bottom:0;
+    padding-left:20px;
+}
+
+.eviIpoIper {
+    background-color:#bedf9c
+}
+
+/* testi scanditi */
+table.versoScandito {
+    width:1%;
+    white-space:nowrap;
+    margin-top:20px;
+    margin-bottom: 50px
+}
+table.versoScandito td {
+    font-size: 15px
+}
+p.c_v,p.c_n,p.vv {
+    color:#888888;
+}
+p.scandito {
+    color:#000000
+}
+td.risolto {
+    background-color: #ffffff;
+    width: 1%
+}
+td.pentametro {
+    padding-left: 25px
+}
+.soluzione {
+    background-color:#fff4a3;/*#fbd532;*/
+    padding: 3px
+}

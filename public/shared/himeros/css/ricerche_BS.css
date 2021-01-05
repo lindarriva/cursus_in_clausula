@@ -1,0 +1,109 @@
+/* stile per la griglia di ricerca modalità BootStrap*/
+
+    #divAvanzata {
+        margin-left:2%;
+        margin-right:2%;
+        margin-bottom: 100px
+    }
+    div.colonnaMetri {
+        float:left;
+    }
+    div.colonnaMetri div {
+        text-align: left;
+        width: 190px;
+        padding-bottom: 3px
+    }
+    div.colonnaExtra {
+        float:left;
+        text-align: left;
+        /*width: 190px;*/
+        margin-right:30px;
+        margin-top: 6px
+    }
+    div.divVarianti {
+        width: 250px;
+    }
+@media screen and (min-width: 760px) {
+    #divAvanzata {
+        min-height:700px
+    }
+    div.divVarianti {
+        width: auto;
+    }
+    table.ric_labelPanel{
+        color:#0b2baa;
+        font-family:'open sans';
+        font-size:12px;
+        font-weight: 400;
+    }
+}
+	div.panel-default {
+    	margin-bottom: 5px
+	}
+	/*
+	h4.panel-title {
+    	font-size: 14px;
+    	color: #444
+	}
+	*/
+
+/* tastiera virtuale */	
+	div.key1 {
+    	float: left
+	}
+	div.key{
+    	border-top:solid 1px #999999;
+    	border-left:solid 1px #999999;
+    	background-color:#ffffff;
+    	font-family:georgia;
+    	font-size:16px;
+    	cursor:pointer;
+    	padding:5px;
+    	text-align: center;
+    	min-width: 23px
+	}
+
+	div.keyDiacritici{
+    	border-top:solid 1px #999999;
+    	border-bottom:solid 1px #999999;
+    	border-right:solid 1px #999999;
+    	background-color:#ffffff;
+    	font-family:cardo;
+    	font-size:30px;
+    	cursor:pointer;
+    	text-align: center;    	
+    	min-width: 23px;
+    	padding-top:23.5px
+	}
+	div.key-info{
+    	border-top:solid 1px #999999;
+    	border-bottom:solid 1px #999999;
+    	border-right:solid 1px #999999;
+    	background-color:#ffffff;
+    	font-family:arial;
+    	font-size:11px;
+    	text-align: left;    	
+    	min-width: 23px;
+    	padding:5px;
+    	line-height:13px;
+    	min-height: 68.5px;
+	}
+
+
+
+	div.key:hover, div.keyDiacritici:hover{
+    	background-color:#d5e4f1
+	}
+	div.beta {
+    	border-bottom:solid 1px #999999;
+	}
+
+	div.key2 {
+    	border-right: solid 1px #999999 !important;
+	}
+@media screen and (max-width: 759px) {
+    div.key, div.key2{
+        border:none !important            
+    }
+    
+}	

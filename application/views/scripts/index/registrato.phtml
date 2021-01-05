@@ -1,0 +1,51 @@
+<script type="text/javascript">
+
+    require(["dojo/parser","dijit/Dialog"
+    ]);
+
+
+</script>
+
+
+
+
+
+<style>
+    p.messaggio {
+        font-family: 'georgia, serif';
+        font-size: 20px;
+        color:#666699;
+    }
+</style>
+
+<?php $pagina = "ricerca"?>
+
+<div class="mainDiv">
+   <?php
+                require "Menu.php";
+                $menu = new Menu("ricerca", $this->baseUrl());
+                ?>
+
+    <div class="pagina" style="height:750px">
+    <label class="labelPagina" style="top:100px"></label>
+
+                <p class="messaggio" align="center" style="margin:30px">Grazie! La registrazione è stata eseguita con successo.</p>
+                <button class="pulsante grande" style="margin:30px" type="button" onclick="location.href='<?php echo $this->baseUrl()?>/index/index'">
+                    Prosegui
+                </button>
+
+
+           
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+

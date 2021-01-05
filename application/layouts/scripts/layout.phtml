@@ -1,0 +1,121 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Cursus');
+
+echo $this->doctype();
+
+
+$_SESSION["host"] = "localhost";
+$_SESSION["user"] = "cursus";
+$_SESSION["password"] = "homo100fortis";
+$_SESSION["database"] = "cursus";
+$_SESSION["uploaddir"] = 'uploads/';
+
+
+
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/js/dojo/dijit/themes/claro/claro.css'); ?>
+     <?php $linkRemoto = $this->baseUrl()."/shared" ?>
+    <?php echo $this->headLink()->prependStylesheet($linkRemoto . '/css/default.css'); ?>
+    
+    <link href="<?php echo $linkRemoto?>/css/HIdatagrid.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="<?php echo $this->baseUrl()?>/css/HIdatagrid.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <?php echo $this->headLink()->prependStylesheet($linkRemoto . '/css/myselect.css'); ?>
+    <?php echo $this->headLink()->prependStylesheet($linkRemoto . '/css/topMenu.css'); ?>
+    
+
+    <style type="text/css">
+        /* indispensabile per dojo!!! */
+            html, body, #mainDiv {
+    /*            height:100%;*/
+                margin: 0;
+                background-color:#fff;
+            }
+            #mainDiv {
+                overflow:auto;
+                padding: 5px;
+            }
+
+            #divTopMenu {
+                margin-top:130px;
+                padding-top:10px;
+                background-color:#fff
+            }
+
+            body {
+                width:960px;
+                height: 100%;
+                margin-left:auto;
+                margin-right:auto;
+                background-color:#efefef;
+                font-family: "Lucida grande","sans serif";
+                font-size: 13px;
+                background-image: url(<?php echo $this->baseUrl() ?>/img/cursus.jpg);
+                background-position:center 5px;
+                background-repeat: no-repeat;
+                padding-top: 75px
+
+            }
+            div.mainDiv {
+                width:960px;
+                margin-left:auto;
+                margin-right:auto;
+                background-color: #fff;
+                min-height: 700px;
+                border-left:1px #cccccc solid;
+                border-right:1px #cccccc solid;
+                border-bottom:1px #cccccc solid;
+            }
+            html {
+                background-color:#efefef;
+            }
+        
+
+
+</style>
+
+<script type="text/javascript">
+    function sessioneScaduta(response){
+        if(response.indexOf("@sessionescaduta@") > -1){ //risposta Ajax che corrisponde a stringa, cercala sempre così (“indexOF”) NO con “=”!!
+        location.href = '<?php echo $this->baseUrl() ?>/index/index';
+        }
+    }
+</script>
+
+
+</head>
+<body class="claro" >
+    
+    <script>dojoConfig = {parseOnLoad: true}</script>
+    <?php
+        $ua = $_SERVER['HTTP_USER_AGENT'];//identifica il browser
+        if(strpos($ua, 'MSIE') === false){  //se non è explorer ?>
+
+            <script src="<?php echo $this->baseUrl()?>/js/dojo/dojo/dojo.js"
+                       data-dojo-config="async: true"></script>
+
+        <?php }else{
+            // Internet Explorer; nelle versioni 8 il Dojo locale non funziona assolutamente (in nessuna pagina, non solo nel login)
+            // perciò si adotta questa versione on line, che invece in Safari produce il brutto effetto dello scroll in apertura di pagina;
+            // IE 11 funziona anche con la versione locale, ma non produce l'effetto di scroll
+            ?>
+
+            <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js"
+               data-dojo-config="async: true"></script>
+
+    <?php }?>
+
+    <div class="attesa" id="wait"></div>
+    <script src="<?php echo $linkRemoto ?>/js/wait.js"></script>
+    <script src="<?php echo $linkRemoto ?>/js/dropdown_menu.js"></script>
+    <script src="<?php echo $linkRemoto ?>/js/HIdatagrid.js"></script>
+    <?php echo $this->layout()->content; ?>
+
+</body>
+</html>

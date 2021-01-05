@@ -1,0 +1,224 @@
+
+
+<script type="text/javascript">
+//    var myIstruzioni;
+
+    require(["dojo/parser",
+        "dijit/layout/BorderContainer",
+        "dijit/layout/ContentPane",
+        "dijit/form/ComboBox",
+        "dijit/Dialog"
+    ]);
+
+
+    
+
+function fai(){
+     var azione = "esegui";
+     var chiave = document.getElementById("searchChiave").value;
+
+        dojo.xhrPost({
+            url: '<?php echo $this->baseUrl() ?>/singulariter/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione,
+                      chiave: chiave
+            },
+            // funzione eseguita in risposta
+            load: function(response) {
+                if(sessioneScaduta(response)) return;
+                if (chiave==""){
+//                    document.getElementById("divEsegui").style.display = "block";
+                    document.getElementById("divMessage").style.display = "block";
+//                    document.getElementById("divDati").innerHTML = response;
+                } else{
+                document.getElementById("divEsegui").style.display = "block";
+                
+                document.getElementById("divDati").style.display = "block";
+                document.getElementById("divDati").innerHTML = response;
+                }
+            },
+            // funzione eseguita in caso di errore
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+}
+
+function nuova(){
+    cancella(true);
+    var azione = "annulla";
+    dojo.xhrPost({
+            url: '<?php echo $this->baseUrl() ?>/singulariter/ajax',
+            // passaggio dei parametri POST
+            content: {azione: azione
+                      
+            },
+
+            load: function(response){
+                if(sessioneScaduta(response)) return;
+                document.getElementById("divEsegui").style.display = "none";
+                document.getElementById("divDati").style.display = "none";
+                document.getElementById("divMessage").innerHTML = response;
+            },
+
+            error: function(error){
+                alert("ok=" + error);
+            }
+        });
+}
+
+function cancella(valore){
+    document.getElementById("searchChiave").value="";
+
+}
+
+
+</script>
+
+<style>
+    input#uploader {
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+#message {
+    color:#d46464;
+    font-weight: bold;
+}
+
+#error {
+    color:#d46464;
+    font-weight: bold;
+}
+
+#warning{
+    color:#0000FF;
+    font-weight: bold;
+}
+
+#avviso{
+    color:#FFA07A;
+    font-weight: bold;
+}
+
+</style>
+<style>
+    li {
+        padding-bottom: 5px
+    }
+    h3 {
+        padding-top: 15px
+}
+</style>
+
+
+    <div class="mainDiv" align="left" style="padding-bottom:30px">
+        <?php
+        require "Menu.php";
+        $menu = new Menu("singulariter", $this->baseUrl());
+        ?>
+        <div style="padding:20px;">
+
+
+
+<div data-dojo-type="dijit/layout/ContentPane"
+     class="panel"
+     id="didascalia"
+     align="justify"
+     style="margin:30px;margin-top: 5 px;padding:10px;background-color: #f0f0f0"
+     >
+    <h4>SCANSIONE DI SINGOLE CLAUSOLE</h4>
+    <p>Inserire una frase, una clausola, un verso per ottenere il risultato automatico della scansione. <br/>
+        Si consiglia di usare questa ricerca per singole clausole anche per testare la correttezza di alcuni risultati 'forzati' tipo:
+        <br/>uoluerit(==----), oppure Jesus(==++)</p>
+</div>
+
+   
+
+<div data-dojo-type="dijit/layout/ContentPane"
+     id="mascheraRicerca"
+     class="panel"
+     align="left"
+     style="margin:30px; margin-top: 10px; padding:20px; background-color:#ccccff">
+                    
+                    <form method="post"
+                          action="<?php echo $this->baseUrl() ?>/singulariter/singulariter"
+                          id="myForm" 
+                          name="myForm"
+                          enctype="multipart/form-data" >
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>Clausola da cercare: </label>
+                                </td>
+                                <td>
+                                <input type="text"
+                                       name="searchChiave"
+                                       id="searchChiave"
+                                       style="width:600px"
+                                       value=""
+                                       data-dojo-type="dijit/form/ValidationTextBox" />
+                                </td>
+                           </tr>
+
+                           <tr align="right">
+
+                               <td colspan="2">
+                                <button type="button"
+                                        name="esegui"
+                                        id="esegui"
+                                        onclick="fai()"
+                                        data-dojo-type="dijit.form.Button"
+                                        showLabel="true">
+                                    ESEGUI
+                                </button>        
+                         
+                                <button type="button"
+                                        name="annulla"
+                                        id="annulla"
+                                        onclick="nuova()"
+                                        data-dojo-type="dijit.form.Button"
+                                        showLabel="true">
+                                    NUOVA
+                                </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    </div>
+
+                    
+                    <div data-dojo-type="dijit/layout/ContentPane"
+                     class="panel"
+                     align="left"
+                     id="divEsegui"
+                     style="margin:3px; margin-top: 3px;padding:5px; display: none">
+
+                    
+                        <p>RISOLUZIONE DI DEFAULT</p>
+                    
+                    
+                    <div class="panel" 
+                         id="divDati"
+                         style="padding:10px;margin-top: 10px;background-color: #ccccff; display: none">
+
+                               
+                    </div>
+                    
+                    </div>
+                    <div data-dojo-type="dijit/layout/ContentPane"
+                         class="panel"
+                         align="center"
+                         id="divMessage"
+                         style="padding:10px;margin-top: 10px;background-color: #ccccff; display: none">
+                        <p>IL CAMPO DI RICERCA È VUOTO: INSERIRE UNA CLAUSOLA</p>
+                    </div>
+
+        </div>
+    </div>
+
+                
+
+

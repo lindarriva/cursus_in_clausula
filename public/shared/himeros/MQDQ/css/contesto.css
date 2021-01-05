@@ -1,0 +1,145 @@
+
+/* Layout della pagina, a pseudo-frames */
+
+html, body {overflow:hidden; margin:0px; padding:0px;background-color: #efefef}
+
+#frameBanner {
+  position:fixed;
+  overflow:hidden;
+  right:0px;
+  left:0px;
+  top:0px;
+  height:106px;
+  width: 100%;    
+  background-repeat:no-repeat;
+  cursor: pointer  
+}
+div.bannerMqdq {
+  background-image:url(img/banner_mqdq.jpg);   
+  background-color: #fbfae6;
+}
+div.bannerPoeti {
+  background-image:url(img/banner_poeti.jpg);    
+  background-color: #faf9e5;
+}
+div.bannerHellenica {
+  background-image:url(img/banner_hellenica.jpg);    
+  background-color: #fbfae6;
+}
+
+/* contiene il titolo e il menù */
+#frameTop {
+  position:fixed;
+  overflow:hidden;
+  right:0px;
+  left:0px;
+  top:106px;
+  height:38px;
+  width: 100%;  
+}
+
+/* contenitore del testo */
+#frameLeft {
+  position:fixed;
+  overflow:auto;
+  right:0px;
+  left:0px;
+  bottom:0px;
+  top:144px;
+  width:50%;
+  background-color: #ffffff;
+  border-right: 1px solid #dc7a1f;
+}
+
+/* lato destro se non c'è apparato*/
+#frameRight {
+  position:fixed;
+  overflow:auto;
+  right:0px;
+  bottom:0px;
+  top:144px;  
+  width:50%;
+  background-color: #ffffff;
+  
+}
+
+
+/* lato destro se c'è apparato*/
+#frameRightApparato {
+  position:fixed;
+  overflow:hidden;  
+  right:0px;
+  bottom:0px;
+  top:144px;  
+  width:50%;
+  background-color: #ffffff;
+  border-left: 1px solid #dc7a1f;
+  
+}
+#frameRightApparatoTop {
+  position:fixed;
+  overflow:auto;
+  right:0px;
+  bottom:0px;
+  top:144px;
+  height:200px;  
+  width:50%;
+}
+#frameRightApparatoBottom {
+  position:fixed;
+  overflow-y:auto;
+  overflow-x:hidden;
+  right:0px;
+  bottom:0px;
+  top:344px; 
+  width:50%;
+  border-top: 1px solid #dc7a1f
+}
+
+#frameLeft div:first-child {
+	padding-left:3%;
+	padding-right:3%;
+}
+
+#frameRightApparatoTop p{
+	padding-left:3.5%;
+	padding-right:5%;
+}
+#frameRightApparatoBottom div{
+	padding-left:3.5%;
+	padding-right:5%;
+}
+
+
+#frameRightApparatoBottom p{
+    margin:0;
+    font-family: "lucida grande","Verdana","Arial","Sans serif";
+    margin-bottom: 3px;
+    line-height: 16px;
+}
+
+
+/* --- menu info ---*/
+
+.menuInfo{
+    margin:0; 
+    background-color:#ffffff;
+    background-image:url(img/menu3.gif);
+    background-repeat:repeat-x;
+}    
+
+td.titolo{
+    font-family:georgia,"times new roman","serif";            
+    height:37px;
+    font-size:16px
+}
+            
+td.menu_o{
+    padding:0px;
+    height:37px;
+    margin:0px;
+}            
+
+
+
+

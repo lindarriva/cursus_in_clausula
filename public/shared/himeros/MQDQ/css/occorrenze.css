@@ -1,0 +1,39 @@
+/* css per la pagina delle occorrenze di MQDQ */
+
+
+.eviSuper {
+	font-weight:normal;
+	text-decoration:none;
+	background-color:yellow;
+	color:#dd0000;
+	font-style:italic;
+	padding:3px;
+	padding-top:0px;
+	padding-bottom:1px;
+	border:1px blue dotted
+}
+
+
+a:link.lectio, A:visited.lectio {
+	color:#0000ff;
+	text-decoration:none;
+	font-style:italic
+}
+
+a:hover.lectio {
+	color: #fb7d00; 
+	text-decoration:underline
+}
+
+p.grafie {font-size:14px;
+	text-align:left;
+	background-color:#ffc703;
+	margin-top:0;
+	padding-top:3px;
+	padding-bottom:3px;
+	margin-bottom:0;
+	padding-left:10px;
+}
+
+
+

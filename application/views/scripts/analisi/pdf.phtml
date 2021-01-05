@@ -1,0 +1,13 @@
+<div style = "padding:100px; padding-top:10px">
+    <?php $this->grid->render(); ?>
+
+</div>
+
+<?php
+require_once ('html2pdf_v4.03/html2pdf.class.php');
+$content =  ob_get_clean();
+$pdf = new HTML2PDF("P", "A4", "it", true, "UTF-8", array(10,10,10,10));
+$pdf->writeHTML($content);
+$pdf->output($this->nomefile. ".pdf", "D");
+?>
+

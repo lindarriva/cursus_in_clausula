@@ -1,0 +1,84 @@
+
+/* per il layout responsivo:
+ - sotto 767 il verso va sotto la citazione
+ - sopra 766 il default per le colonne è: 40% citazione - 60% contesto
+ - l'allineamento della citazione è right
+ - il wrap della citazione è cosentito: per cambiare operare nello stile della pagina
+ */
+div.head {
+	padding-top:15px;
+	/*padding-bottom:10px;*/
+	padding-left:10px;
+	font-family:'Open sans','Lucida Grande','Lucida Sans Unicode','Helvetica','Arial','Sans serif';	
+	font-size:15px;
+	color:#444444;
+	background:#ffffff !important;
+	line-height:25px
+} 
+
+ 
+div.citazione {
+    width: 100%;
+    white-space: normal;
+    min-height:30px;
+    line-height:20px;
+    background-color: #edf4ff;	/* impostazione < 768: colonna citazione colorata*/
+    text-align: left;
+    padding-left: 10px
+}
+
+
+div.bianco, div.grigio {
+    width: 100%;
+    background-color: #ffffff;	/* impostazione < 768: colonna contesto sempre bianca */
+    min-height: 31px;
+    
+}
+
+
+
+@media screen and (min-width: 767px) {
+	/* sopra 768 la colonna citazione è bianca, mentre la colonna contesto è a righe alternate bianco/colore */
+    div.citazione {
+        width: 40%;
+        text-align: right;
+        padding-right: 2%;
+        background-color: #ffffff
+    }
+    div.bianco, div.grigio, td.grigio {
+        width: 60%;
+        border-left: 1px solid #dedeeb  /* bordo di divisione delle colonne */
+    }
+    div.grigio {
+        background-color: #edf4ff;
+    }    
+	div.rigaOccorrenza  {    	
+    	border-top: 1px solid #dedeeb ; /* bordo prima riga e separazione tra tutte le righe*/
+	}    
+	#divOccorrenze{
+    	/* bordo sinistro, bordo destro, bordo ultima riga */
+    	border-left: 1px solid #dedeeb ;
+    	border-right: 1px solid #dedeeb ;
+    	border-bottom: 1px solid #dedeeb ;
+	}	
+}  
+
+
+@media print{
+    /* nella stampa si eliminano tutti i colori di fondo e i bordi; si riduce la larghezza della colonna citazione*/
+    div.citazione,div.grigio, div.bianco, div.rigaOccorrenza, #divOccorrenze {
+        background-color: #ffffff;
+        border:none
+    }
+    div.citazione{
+        width:35%
+    }    
+}
+
+
+
+
+
+
+
+

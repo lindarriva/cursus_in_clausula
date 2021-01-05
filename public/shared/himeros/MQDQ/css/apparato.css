@@ -1,0 +1,78 @@
+/* apparato */
+
+p.variante {
+    font-family:verdana; 
+    font-size:13px;
+    margin-top:2px; 
+    margin-bottom:2px
+}
+.titoloApparato {
+    font-family:verdana; 
+    color:#880000; 
+    font-weight:bold;
+    margin: 0 !important;
+    padding-top: 10px !important;
+    font-size: 13px
+}
+a:link.codex, a:visited.codex{
+    color:#0000BA;                      /*#cc0000*/
+    font-family:verdana;
+    text-decoration:none;
+}
+a:hover.codex{
+    color:#0000BA;
+    text-decoration:underline;
+}
+
+
+
+/* ---------- cospetto */
+
+#divInfo {
+    padding:10px;
+}
+p.titolo1,p.titolo2,p.source {
+    font-family:"lucida grande",verdana,arial    
+}
+
+p.titolo1 {
+    font-size:14px;
+    padding-top:0px;
+    font-style:italic;
+    font-weight:bold;
+}
+p.titolo2 {
+    font-size:13px;
+    padding-top:2px;
+    padding-bottom:2px;
+}
+p.source {
+    font-size:12px;
+    margin-bottom:3px;
+    font-family:"lucida grande",verdana,arial
+}
+.sigla{
+    color:#0000BA;                      /*#cc0000*/
+    font-family:verdana;
+    cursor:default;
+}
+.explication{
+    color:#0000BA
+}
+a:link.codex, a:visited.codex{
+    color:#0000BA;                      /*#cc0000*/
+    font-family:verdana;
+    text-decoration:none;
+}
+a:hover.codex{
+    text-decoration:underline;
+}
+a:link.explication, a:visited.explication{
+    color:#000000;                      
+    font-family:verdana;
+    text-decoration:none;
+}
+a:hover.explication{
+    color:#0000BA;                      
+    text-decoration:underline;
+}

@@ -1,0 +1,72 @@
+/*
+Stile per il combobox personale; è necessario:
+- inserire l'elemento <select> in una div di classe "styledMySelect"
+- assegnare al <select> l'attributo class="mySelect"
+- eventualmente ridefinire la lunghezza in entrambi gli elementi, in maniera che il <div> sia di 30px minore del <select>
+*/
+
+select.mySelect {
+    padding: 7px;
+    width: 190px;	/* deve essere di 30px superiore del seguente, ed eventualmente ridefinito */
+    height:30px;
+    color: #3d6376;
+    border: 0px;
+
+    border-radius: 4px;
+    -khtml-border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+
+    box-shadow: inset 1px 3px 3px #999;
+    -webkit-box-shadow: inset 1px 3px 3px #999;
+    -moz-box-shadow: inset 1px 3px 3px #999;
+    background: transparent;
+    font-family:"Lucida grande", "Arial", "Sans serif";
+    font-size:12px;
+}
+.styledMySelect{
+    display: inline-block;
+   width: 160px;	/* deve essere di 30px inferiore al precedente, ed eventualmente ridefinito */
+   overflow: hidden;
+
+   border-radius: 4px;
+   -khtml-border-radius:4px;
+   -moz-border-radius: 4px;
+   -webkit-border-radius: 4px;
+
+   background: url(img/combo.png) no-repeat 93%;
+   background-color:#fff;
+   border: 1px solid #759dc0;
+}
+.styledMySelect:hover {
+    box-shadow:0px 0px 10px 2px #a9d4f6;
+    -webkit-box-shadow: 0px 0px 10px 2px #a9d4f6;
+    -moz-box-shadow: 0px 0px 10px 2px #a9d4f6;
+    background: url(img/combo_ho.png) no-repeat 93% #fff;
+}
+
+select.mySelect option {
+    color:#000;
+    padding-top:3px;
+    padding-bottom:3px;
+    padding-right:10px;
+    padding-left:10px
+}
+select.mySelect option:hover {
+    text-shadow: 1px 1px 1px #555;
+    /* funziona solo su Firefox; inoltre il colore del testo resta sempre bianco */
+
+    background: #ccdfe9; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NjZGZlOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM4NmIyY2IiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #ccdfe9 0%, #86b2cb 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ccdfe9), color-stop(100%,#86b2cb)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ccdfe9 0%,#86b2cb 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ccdfe9 0%,#86b2cb 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ccdfe9 0%,#86b2cb 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ccdfe9 0%,#86b2cb 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccdfe9', endColorstr='#86b2cb',GradientType=0 ); /* IE6-8 */
+
+
+
+}

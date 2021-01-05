@@ -1,0 +1,209 @@
+
+
+<script type="text/javascript">
+
+    require(["dojo/parser","dijit/Dialog"
+    ]);
+
+
+function registra(){
+    location.href = "<?php echo $this->baseUrl('index/registra')?>";
+}
+
+
+
+
+</script>
+
+<style>
+    li {
+        padding-bottom: 5px
+          
+    }
+    h3 {
+        padding-top: 15px
+    }
+    .intro {font-family: georgia, serif; font-style: italic; font-size: 14px
+
+    }
+    #username-label {margin-left:0}
+    
+    
+</style>
+
+    <div class="mainDiv" align="left" style="padding-bottom:20px;min-height: 700px">
+        <?php
+        require "Menu.php";
+        $menu = new Menu("home", $this->baseUrl());
+        ?>
+        <div style="padding:5px;">
+
+            <?php if ($this->login){ ?>
+            <table style="cellspacing:10; " > <!--è la tabella che scompare dopo il login-->
+                <tr>
+                    <td style="width:58%">
+                        <div data-dojo-type="dijit/layout/ContentPane"
+                             class="panel"
+                             align="justify"
+                             style="background-color: #ffffff;margin:10px;margin-top:0px;margin-bottom:0px;padding:10px;padding-top:5px">
+
+                            <p class="intro"><font style="color:#990000; font-style:italic; font-size:16px; font-family: cloister black, serif">Cursus in Clausula</font>
+                                 è un progetto finalizzato a coadiuvare gli studiosi di testi latini nell’<b>analisi delle clausole metriche e ritmiche</b> della
+                                prosa. Il sito dedica ad ogni utente una sessione di lavoro dove è possibile archiviare i testi di studio e procedere con analisi. </p>
+                                
+                            
+                            <table cellspacing="0"><tr><td>
+                                        <img src="<?php echo $this->baseUrl() ?>/img/comandi_browser.png" align="middle"/>
+
+                                    </td>
+                                    <td style="padding:7px">
+                                        Si consiglia vivamente, in tutte le funzioni del programma, di usare per la navigazione <b>esclusivamente i comandi interni</b>
+                                         (menù, pulsanti ecc.),
+                                        evitando l'impiego dei tasti del browser illustrati nell'immagine ("Torna indietro", "Ricarica la pagina", "Cronologia" ecc.).
+                                    </td>
+                                </tr>
+                                <tr> <td style="padding:7px">
+                                        <img src="<?php echo $this->baseUrl() ?>/img/browsers_mini.png" alt="browser" align="middle"/>
+                                    </td>
+                                     <td style="padding:7px">
+                                        Il programma è stato testato sui browser rappresentati nell'immagine.
+                                     </td>
+                                </tr>
+                          </table>
+                         </div>
+                    </td>
+
+                    <td class="panel"
+                    id="loginPanel"
+                    style="height: 10%; background-color: #dfe6ea;  margin:5px;padding:10px;padding-top:5px">
+                    <p align="justify">La procedura di registrazione consente di ottenere uno spazio dedicato dove archiviare i testi e procedere con l'analisi delle clausole.
+                    Se non sei ancora registrato, clicca il pulsante "Registrazione" </p>
+                        <?php echo $this->form->render() ?>
+                    <p class="messaggio"><?php echo $this->messaggio?></p>
+                    </td>
+                </tr>
+            </table>
+            <?php } ?>
+            
+            <table cellspacing="2" border="0">
+                <tr>
+                <td>
+                    <div data-dojo-type="dijit/layout/ContentPane"
+                             class="panel"
+                             align="justify"
+                             style=" background-color: #f5f5f5;margin:10px;margin-top:0px;margin-bottom:10px;padding:10px;padding-top: 5px; border: none">
+                        
+                        <p class="intro"><b>INTRODUZIONE</b><br>
+                           Dal 1975, anno d’uscita del volume di Tore Janson"Prose Rhytm in Medieval Latin from the 9th to the 13th Century" chiunque voglia occuparsi di cursus deve per forza fare i conti con i calcoli statistici del metodo della “comparazione interna” (<i>internal comparison</i>, pp. 19-26). Prendendo come riferimento l’impostazione teorica e i procedimenti d’indagine su ritmo prosastico accentuativo e quantitativo usati da Giovanni Orlandi e la sua scuola si offre allo studioso uno strumento che, dato un testo in prosa adeguatamente allestito per l’indagine del cursus, è in grado di:</p>
+
+                        <ul><li class="intro"> operare la scansione quantitativa di una clausola </li>
+                            <li class="intro"> operare la classificazione ritmica di una clausola </li>
+                            <li class="intro"> creare tabelle con la classificazione di tutte le clausole quantitative e ritmiche osservate con l’immediato calcolo di percentuali e indice di Pearson</li>
+                        </ul>
+
+                        <p class="intro">I testi da sottoporre ad analisi devono essere trasferiti dal computer locale al server, dove permangono nell'archivio dell'utente da una sessione all'altra, fino a quando non si decida di eliminarli: la pagina dedicata all'archiviazione dei file è <b>"ARCHIVIO TESTI"</b>.<br/><br/>
+                        La pagina <b>ANALISI</b> si compone di due momenti: </p><ul style="list-style:none">
+                        <li class="intro">nella prima fase, <b>testi</b>, l'utente selezionerà il testo su cui intende operare la scansione del cursus</li>
+                        <li class="intro">cliccando la linguetta <b>analizza</b>, si accederà ai vari risultati di analisi del cursus proposti in singole tabelle dedicate (tabella di controllo sistematico delle clausole; tabelle con valori statistici su clausole quantitative [tipo: +-|++*], su clausole accentuative[tipo p 3p], sul cursus [tipo: xooxo, planus]).
+                        </ul>
+                        <p class="intro">In ogni pagina, l’utente potrà usufruire di istruzioni <i>ad hoc</i> e ricorrere ai tasti di aiuto <img src="<?php echo $this->baseUrl() ?>/img/aiuto.png" alt="help" align="middle"/>   per chiarimenti su simbologia e dettagli sui calcoli statistici.</p>
+                        <p class="intro">Si consulti la pagina <a href="<?php echo $this->baseUrl() ?>/bibliografia/bibliografia"><b>BIBLIOGRAFIA</b></a> per chiarimenti sulla metodologia.</p>
+                        <p class="intro">A questo <a href="https://www.youtube.com/watch?v=wwoINjQy4oE&list=PLaUmBQ7P5K-BgO-2ID5DuQAh4w6TgW-xv&index=11">link</a>
+                            è possibile visualizzare la presentazione dell'applicazione tenuta durante il III convegno annuale <b>AIUCD 2014</b> a Bologna.</p>
+
+                    </div>
+                </td></tr>
+                <tr><td>
+                        <div data-dojo-type="dijit/layout/ContentPane"
+                             class="panel"
+                             align="left"
+                             style="background-color: #ffffff;margin:5px;margin-top:0px;margin-bottom:0px;padding:5px;padding-top:3px">
+                            <table>
+                            <td style="width:60%">
+                             <table cellspacing="5" cellpadding="12"><tr>
+                                    <td cellspacing="5">
+                                        <a href="http://www.traditiopatrum.it/">
+                                    <img src="<?php echo $this->baseUrl() ?>/img/link_TRAPAT.png" align="bottom"/></a><br>
+<!--                                    <img src="<?php echo $this->baseUrl() ?>/img/Logo_Uniud.png" align="bottom"/><br>-->
+                                    
+                                    </td>
+                                    <td class="intro" align="justify" cellpadding="5" cellspacing="5">
+                                        Il progetto è stato realizzato all'interno del progetto FIRB 2008  <br>
+                                        <a href="http://www.traditiopatrum.it/">
+                                        <i><b>Traditio Patrum. La trasmissione testuale dei Padri latini tra mondo classico e medievale</b></i></a><br/>
+                                    </td>
+                                    <td align="justify" cellpadding="5" cellspacing="5">                                    </td>
+                                </tr>
+                                <tr>
+                                    <td cellspacing="5">
+                                        <a href="http://www.pedecerto.eu/"><img src="<?php echo $this->baseUrl() ?>/img/link_PEDECERTO.png" align="bottom"/></a>
+                                    </td>
+                                    <td class="intro" align="justify" cellpadding="5" cellspacing="5">
+                                        Nell'ambito dello stesso progetto è stato realizzato anche il tool per la scansione degli esametri latini<br>
+                                        <a href="http://www.pedecerto.eu/"><i><b>Pede Certo</b></i></a>.
+                                    </td>
+                                    <td align="justify" cellpadding="5" cellspacing="5">                                               </td>
+
+
+
+                                </tr>
+                               
+                                <tr>
+                                    <td colspan="2" >
+                                        <p class="cura" style="font-size:13.5px">
+                                        <font style="color:#990000; font-style:bold" >Principal Investigator</font><br/> Emanuela Colombi<br/>
+                                        <font style="color:#990000; font-style:bold" >Realizzazione tecnica </font><br/> Linda Spinazzè<br/>
+                                        <font style="color:#990000; font-style:bold" >Vocabolario 'semilemmatizzato'</font><br/> Luigi Tessarolo<br/></p>
+                                    </td></tr>
+
+                            </table>
+                            </td>
+                            </table>
+                        </div>
+                </td></tr>
+             </table>
+        </div>
+       
+    </div>
+<!--pedice-->
+ <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'"
+                 class="panel"
+                 align="justify"
+                 style="background-color: #ccccff">
+                 <table  width="100%">
+                <tr>
+                    <td>
+                        <p align="center">Università degli studi<br/> di Udine <br/>
+                            <img src="<?php echo $this->baseUrl() ?>/img/uniud_viola.png" align="center"/><br/>
+                            DIPARTIMENTO DI <br/>STUDI UMANISTICI
+                        </p>
+                    </td>
+                    <td>
+                        <p align="center"> FIRB 2008<br/><br/>
+                        <img src="<?php echo $this->baseUrl() ?>/img/TRAPAT.png" align="center"/></p>
+                    </td>
+                   <td>
+                        <p><img src="<?php echo $this->baseUrl() ?>/img/valid-xhtml10.png" align="right"/></p><br/><br/>
+                        <p><img src="<?php echo $this->baseUrl() ?>/img/browsers_mini.png" align="right"/></p>
+                    </td>
+                    <td >
+                        <p align="right">Sito a cura di: <br/>
+                            <a href="http://it.linkedin.com/pub/linda-spinazze/27/b83/317/en"> Linda Spinazzè </a></p>
+                        <p align="right"><img src="<?php echo $this->baseUrl() ?>/img/mail.gif" align="bottom"/>
+                            <b>Contatti:</b> <br>
+                            <a href="mailto:linda.spinazze@gmail.com"> info@cursusinclausula.eu </a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center">
+                        <br/><br/>
+                        <p>Ultimo aggiornamento: 11 Ottobre 2020</p>
+                    </td>
+                </tr>
+            </table>
+
+
+            </div>
+<script type="text/javascript">
+    document.getElementById("username").focus();
+</script>

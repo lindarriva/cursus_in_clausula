@@ -1,0 +1,5 @@
+a:link.semplice, a:visited.semplice {color: #0000a0; font-size:12px; font-family:verdana,arial; text-decoration: underline}
+a:hover.semplice { color: #fb7d00; text-decoration: underline}
+.standard { color: #0000a0; font-size:9pt; font-family:verdana, arial}
+input.campo0 {font-family:verdana,arial;font-size:12px;width:210px}
+input.campo1 {font-family:verdana,arial;font-size:12px;width:140px}
