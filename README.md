@@ -26,7 +26,7 @@ CURSUS è costituito da 12 tabelle.
  - temi
  - lemmi.
 
-### SITO
+### APPLICATION
 #### TESTI
 
 __View: testi.phtml__
