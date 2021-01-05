@@ -90,8 +90,6 @@ analisi di 4 tipologie:
 						2. ritmo (tipo: n, np)
 						3. cursus (tipo: òooòo=planus)
 						4. orlandi
-						
-            5. aili 
 
 
 __ANALISI ORLANDI__
