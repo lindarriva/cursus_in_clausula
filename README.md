@@ -1,13 +1,13 @@
 # cursus_in_clausula
 archivio di materiali tecnico-informatici per l'applicazione/sito Cursus in Clausula - progetto finanziato su  FIRB 2008, Università di Udine; principal investigator: Emanuela Colombi
 
-##overview
+## overview
 
 Il sito è sviluppato nell'ambiente di sviluppo integrato (IDE) NEtBeans e si basa sul modello MVC (Model View Controller) sfruttando Zend Framework. Il lato server di elaborazione dati e dialogo con il database MySql è completamente gestito in PHP 5.5 (upgrade a PHP 7.4 in dicembre 2020); per uno sviluppo maggiormente interoperabile e più friendly del lato client si è fatto ricorso al toolkit Dojo (pacchetto di librerie di configurazione e script Java che assicurano la compatibilità tra browser, a partire da Internet Explorer 8).
 
 Fondamentale settare come impostazione generale di codifica: "UTF-8" 
 
-###DB 
+### DB 
 CURSUS è costituito da 12 tabelle.
 
 5 per la gestione di utenti e dati:
@@ -26,8 +26,8 @@ CURSUS è costituito da 12 tabelle.
  - temi
  - lemmi.
 
-###SITO
-####TESTI
+### SITO
+#### TESTI
 
 __View: testi.phtml__
 è la pagina "archivio testi", dove l'utente può:
@@ -82,7 +82,7 @@ Dopo aver caricato il file (chiamata "eseguiAnalisi","salva", "salvaUTF","cambia
 	
 Quindi la *function analisi* si occupa anche di controllare il report degli errori/modifiche/consigli di marcatura all'utente, riempiendo ad hoc la tabella cursus.testi (dove si contano le parole, il titolo, la sigla, il log...).
 
-####ANALISI
+#### ANALISI
 __view: Analisi.phtml__
 analisi di 4 tipologie: 
             1. generale, generica (tabella in pagina a sè)
